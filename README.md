@@ -71,7 +71,13 @@ However with [a little hack](https://github.com/abjerner/Skybrud.Umbraco.Dashboa
 
 ## The Future
 
-Who knows. Come back later for more ;)
+In the future, this project will also feature panels/properties that you can add to your dashboard. Have a look at the screenshot below.
+
+While the Mailchimp and NuGet boxes are currently just mockups, the big box with the statistics pulls information directly from Google Analytics.
+
+So when your editors log in, they could be presented with a view like this:
+
+![An example](https://github.com/abjerner/Skybrud.Umbraco.Dashboard/blob/master/images/readme-dashboard-preview.png)
 
 
 
