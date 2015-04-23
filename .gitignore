@@ -1,0 +1,5 @@
+src/packages/
+src/Skybrud.Umbraco.Dashboard/bin/
+src/Skybrud.Umbraco.Dashboard/obj/
+*.suo
+src/Skybrud.Umbraco.Dashboard/App_Data/NuGetBackup/
