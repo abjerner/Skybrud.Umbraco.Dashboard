@@ -11,8 +11,14 @@ namespace Skybrud.Umbraco.Dashboard.Plugins {
     /// methods that you actually need.
     /// </summary>
     public abstract class DashboardPluginBase : IDashboardPlugin {
-        
+
         public virtual void GetDashboard(string section, List<DashboardTab> tabs) { }
+
+        public virtual void GetSites(List<IDashboardSite> sites) { }
+
+        public virtual IDashboardSite GetSiteById(int siteId) {
+            return null;
+        }
 
     }
 

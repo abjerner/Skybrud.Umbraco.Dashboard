@@ -1,7 +1,13 @@
-﻿using System.Web;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Web;
 using System.Web.Mvc;
+using Skybrud.Social.Google.Analytics.Interfaces;
+using Skybrud.Umbraco.Dashboard.Interfaces;
 using Skybrud.Umbraco.Dashboard.Plugins;
 using Skybrud.Umbraco.Dashboard.Plugins.Umbraco;
+using Umbraco.Core.Logging;
 using Umbraco.Web;
 using Umbraco.Web.WebApi;
 using Umbraco.Core;
@@ -19,6 +25,7 @@ namespace Skybrud.Umbraco.Dashboard {
             new UmbracoDashboardPlugin()
         };
 
+        private CultureInfo _cultureInfo;
         private UrlHelper _helper;
 
         #endregion
@@ -53,6 +60,11 @@ namespace Skybrud.Umbraco.Dashboard {
             get { return PluginCollection; }
         }
 
+        public CultureInfo Culture {
+            get { return _cultureInfo; }
+            set { _cultureInfo = value ?? new CultureInfo("da-DK"); }
+        }
+
         #endregion
 
         #region Constructors
@@ -78,6 +90,90 @@ namespace Skybrud.Umbraco.Dashboard {
         /// <param name="actionName">The name of the action.</param>
         public string GetServiceUrl<T>(string actionName) where T : UmbracoApiController {
             return UrlHelper.GetUmbracoApiService<T>(actionName);
+        }
+
+        #region i18n
+
+        /// <summary>
+        /// Formats <code>value</code> using the specified <code>culture</code>. If <code>culture</code> is <code>NULL</code>, the default culture is used instead.
+        /// </summary>
+        /// <param name="value">The value to be formatted.</param>
+        /// <param name="culture">The culture to be used for formatting the value.</param>
+        public string Format(int value, CultureInfo culture = null) {
+            return value.ToString("N0", culture ?? Culture);
+        }
+
+        /// <summary>
+        /// Formats <code>value</code> using the specified <code>culture</code>. If <code>culture</code> is <code>NULL</code>, the default culture is used instead.
+        /// </summary>
+        /// <param name="value">The value to be formatted.</param>
+        /// <param name="culture">The culture to be used for formatting the value.</param>
+        /// <param name="decimals">The amount of decimals to be shown in the formatted text.</param>
+        public string Format(double value, CultureInfo culture = null, int decimals = 2) {
+            return value.ToString("N" + decimals, culture ?? Culture);
+        }
+
+        public string Translate(string key) {
+            return "{" + key + "}";// DashboardTranslations.Instance.Translate(Culture, key);
+        }
+
+        public string Translate(IAnalyticsField field) {
+            return "{" + field.Name + "}";// DashboardTranslations.Instance.Translate(Culture, field.Name);
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Gets an array of all sites that should be shown in the dashboard.
+        /// </summary>
+        public IDashboardSite[] GetSites() {
+
+            // Temporary collection for storing the sites
+            List<IDashboardSite> sites = new List<IDashboardSite>();
+
+            // Get the sites specified by each resolver
+            foreach (IDashboardPlugin plugin in Plugins) {
+
+                try {
+
+                    plugin.GetSites(sites);
+
+                } catch (Exception ex) {
+
+                    LogHelper.Error<DashboardContext>("Plugin of type " + plugin.GetType() + " has failed for GetSites()", ex);
+
+                }
+
+            }
+
+            return sites.ToArray();
+
+        }
+
+        /// <summary>
+        /// Gets a site with the specified <code>siteId</code>, or <code>null</code> if a site couldn't be found.
+        /// </summary>
+        /// <param name="siteId">The ID of the site.</param>
+        public IDashboardSite GetSiteById(int siteId) {
+
+            // Get the sites specified by each resolver
+            foreach (IDashboardPlugin plugin in Plugins) {
+
+                try {
+
+                    IDashboardSite site = plugin.GetSiteById(siteId);
+                    if (site != null) return site;
+
+                } catch (Exception ex) {
+
+                    LogHelper.Error<DashboardContext>("Plugin of type " + plugin.GetType() + " has failed for GetSite(" + siteId + ")", ex);
+
+                }
+
+            }
+
+            return null;
+
         }
 
         #endregion

@@ -98,6 +98,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Skybrud.Social">
+      <HintPath>..\packages\Skybrud.Social.0.9.3\lib\net40\Skybrud.Social.dll</HintPath>
+    </Reference>
     <Reference Include="Skybrud.WebApi.Json">
       <HintPath>..\packages\Skybrud.WebApi.Json.1.0.2\lib\Skybrud.WebApi.Json.dll</HintPath>
     </Reference>
@@ -188,11 +191,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AnalyticsController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="DashboardContext.cs" />
     <Compile Include="DashboardHelpers.cs" />
     <Compile Include="DashboardStartup.cs" />
+    <Compile Include="Exceptions\DashboardException.cs" />
+    <Compile Include="Interfaces\IAnalyticsSite.cs" />
+    <Compile Include="Interfaces\IDashboardBlock.cs" />
     <Compile Include="Interfaces\IDashboardPlugin.cs" />
+    <Compile Include="Interfaces\IDashboardSite.cs" />
+    <Compile Include="Model\Analytics\Blocks\AnalyticsBlock.cs" />
+    <Compile Include="Model\Analytics\Blocks\AnalyticsChildBlock.cs" />
+    <Compile Include="Model\Analytics\Blocks\DevicesBlock.cs" />
+    <Compile Include="Model\Analytics\Blocks\LineChartBlock.cs" />
+    <Compile Include="Model\Analytics\Blocks\PopularBlock.cs" />
+    <Compile Include="Model\Analytics\Blocks\VisitsBlock.cs" />
+    <Compile Include="Model\Analytics\DashboardAnalyticsSettings.cs" />
+    <Compile Include="Model\Analytics\DataQuery.cs" />
+    <Compile Include="Model\Analytics\DataQueryType.cs" />
+    <Compile Include="Model\Analytics\DataResponse.cs" />
+    <Compile Include="Model\Analytics\DataRow.cs" />
+    <Compile Include="Model\Blocks\DashboardBlock.cs" />
     <Compile Include="Model\DashboardTab.cs" />
     <Compile Include="Model\Properties\DashboardDataProperty.cs" />
     <Compile Include="Model\Properties\DashboardProperty.cs" />
@@ -202,8 +222,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

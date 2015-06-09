@@ -15,6 +15,18 @@ namespace Skybrud.Umbraco.Dashboard.Interfaces {
         /// <param name="tabs">The list of tabs that can be manipulated.</param>
         void GetDashboard(string section, List<DashboardTab> tabs);
 
+        /// <summary>
+        /// Method called when the Dashboard requests a list of sites.
+        /// </summary>
+        /// <param name="sites">The list of sites.</param>
+        void GetSites(List<IDashboardSite> sites);
+
+        /// <summary>
+        /// Gets a site by the specified <code>siteId</code>.
+        /// </summary>
+        /// <param name="siteId">The ID of the site.</param>
+        IDashboardSite GetSiteById(int siteId);
+
     }
 
 }
