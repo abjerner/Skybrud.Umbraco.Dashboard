@@ -1,0 +1,10 @@
+﻿<div class="block border nuget">
+    <h3>{{block.title}}</h3>
+    <table class="list">
+        <tr ng-repeat="item in block.downloads" ng-class="{positive: item.change > 0, negative: item.change < 0}">
+            <td class="text">{{item.name}}</td>
+            <td class="value">{{item.downloads}} downloads</td>
+            <td class="change">{{item.change > 0 ? '+' + item.change : item.change}}</td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,21 @@
+﻿<div class="dashboard" ng-init="site = property.sites[0]">
+
+    <div style=" margin: 0; font-size: 26px; line-height: 40px; font-weight: normal;" ng-show="property.sites.length > 1">
+        Statistics for
+        <select ng-options="site.name for site in property.sites track by site.id" ng-model="site" style="height: 40px; margin-left: 5px; padding: 0 5px;"></select>
+    </div>
+    
+    <div class="blocks">
+		<div ng-repeat="block in site.blocks">
+			<dashboard-block model="block" />
+		</div>
+	</div>
+    
+    <!--
+    <br /><br /><br />
+    <pre style="font-size: 9px; line-height: 11px;">--{{site | json}}--</pre>
+    <br /><br /><br />
+    <pre style="font-size: 9px; line-height: 11px;">--{{property | json}}--</pre>
+    -->
+
+</div>

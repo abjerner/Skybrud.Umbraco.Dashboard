@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skybrud.Umbraco.Dashboard", "Skybrud.Umbraco.Dashboard\Skybrud.Umbraco.Dashboard.csproj", "{8DA5DF79-99BD-4CEA-9506-D171466C9693}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skybrud.Umbraco.Dashboard.Web", "Skybrud.Umbraco.Dashboard.Web\Skybrud.Umbraco.Dashboard.Web.csproj", "{779B2F49-654D-417F-8083-5B2F4BC60BA6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{8DA5DF79-99BD-4CEA-9506-D171466C9693}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DA5DF79-99BD-4CEA-9506-D171466C9693}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DA5DF79-99BD-4CEA-9506-D171466C9693}.Release|Any CPU.Build.0 = Release|Any CPU
+		{779B2F49-654D-417F-8083-5B2F4BC60BA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{779B2F49-654D-417F-8083-5B2F4BC60BA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{779B2F49-654D-417F-8083-5B2F4BC60BA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{779B2F49-654D-417F-8083-5B2F4BC60BA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

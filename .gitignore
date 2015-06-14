@@ -3,3 +3,6 @@ src/Skybrud.Umbraco.Dashboard/bin/
 src/Skybrud.Umbraco.Dashboard/obj/
 *.suo
 src/Skybrud.Umbraco.Dashboard/App_Data/NuGetBackup/
+*.user
+src/Skybrud.Umbraco.Dashboard.Web/bin/
+src/Skybrud.Umbraco.Dashboard.Web/obj/
