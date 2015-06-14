@@ -3,6 +3,9 @@ using Skybrud.Umbraco.Dashboard.Model.Analytics;
 
 namespace Skybrud.Umbraco.Dashboard.Interfaces {
     
+    /// <summary>
+    /// Interface describing a dashboard site with information on how to retrieve statistics from Google Analytics.
+    /// </summary>
     public interface IAnalyticsSite : IDashboardSite {
 
         /// <summary>

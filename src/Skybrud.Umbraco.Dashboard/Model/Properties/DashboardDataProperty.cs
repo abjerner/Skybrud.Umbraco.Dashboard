@@ -2,6 +2,9 @@
 
 namespace Skybrud.Umbraco.Dashboard.Model.Properties {
     
+    /// <summary>
+    /// Class describing a data based dashboard property.
+    /// </summary>
     public class DashboardDataProperty : DashboardProperty {
 
         #region Properties
@@ -17,7 +20,18 @@ namespace Skybrud.Umbraco.Dashboard.Model.Properties {
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new dashboard property with the specified <code>alias</code>.
+        /// </summary>
+        /// <param name="alias">The alias of the property.</param>
         public DashboardDataProperty(string alias) : base(alias) { }
+
+        /// <summary>
+        /// Initializes a new dashboard property with the specified <code>alias</code>.
+        /// </summary>
+        /// <param name="alias">The alias of the property.</param>
+        /// <param name="view">THe URL to the view of the property.</param>
+        public DashboardDataProperty(string alias, string view) : base(alias, view) { }
 
         #endregion
 

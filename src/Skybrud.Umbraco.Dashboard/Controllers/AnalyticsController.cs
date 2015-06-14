@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using Skybrud.Umbraco.Dashboard.Exceptions;
@@ -12,6 +8,7 @@ using Skybrud.Umbraco.Dashboard.Interfaces;
 using Skybrud.Umbraco.Dashboard.Model.Analytics;
 using Skybrud.WebApi.Json;
 using Skybrud.WebApi.Json.Meta;
+using Umbraco.Core.Models.Membership;
 using Umbraco.Web.Mvc;
 using Umbraco.Web.WebApi;
 
@@ -23,6 +20,8 @@ namespace Skybrud.Umbraco.Dashboard.Controllers {
 
         [HttpGet]
         public object GetSiteData(int siteId, string period, bool cache = true) {
+
+            DashboardHelpers.EnsureCurrentUserCulture();
 
             try {
 
@@ -61,7 +60,7 @@ namespace Skybrud.Umbraco.Dashboard.Controllers {
             }
 
         }
-
+    
     }
 
 }

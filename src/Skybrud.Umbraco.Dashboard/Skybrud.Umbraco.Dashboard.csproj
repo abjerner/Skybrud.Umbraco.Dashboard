@@ -195,7 +195,10 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="DashboardContext.cs" />
     <Compile Include="DashboardHelpers.cs" />
+    <Compile Include="DashboardLanguage.cs" />
+    <Compile Include="DashboardPhrase.cs" />
     <Compile Include="DashboardStartup.cs" />
+    <Compile Include="DashboardTranslations.cs" />
     <Compile Include="Exceptions\DashboardException.cs" />
     <Compile Include="Interfaces\IAnalyticsSite.cs" />
     <Compile Include="Interfaces\IDashboardBlock.cs" />
@@ -213,7 +216,9 @@
     <Compile Include="Model\Analytics\DataResponse.cs" />
     <Compile Include="Model\Analytics\DataRow.cs" />
     <Compile Include="Model\Blocks\DashboardBlock.cs" />
+    <Compile Include="Model\Blocks\DashboardColumnsBlock.cs" />
     <Compile Include="Model\DashboardTab.cs" />
+    <Compile Include="Model\Properties\DashboardBlocksProperty.cs" />
     <Compile Include="Model\Properties\DashboardDataProperty.cs" />
     <Compile Include="Model\Properties\DashboardProperty.cs" />
     <Compile Include="Plugins\DashboardPluginBase.cs" />

@@ -17,6 +17,8 @@ namespace Skybrud.Umbraco.Dashboard.Controllers {
         [HttpGet]
         public object GetDashboard(string section) {
 
+            DashboardHelpers.EnsureCurrentUserCulture();
+
             // Initialize a new list for the tabs
             List<DashboardTab> tabs = new List<DashboardTab>();
 

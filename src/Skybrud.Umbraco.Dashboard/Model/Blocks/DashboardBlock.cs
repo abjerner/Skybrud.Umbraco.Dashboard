@@ -2,11 +2,15 @@
 
 namespace Skybrud.Umbraco.Dashboard.Model.Blocks {
     
+    /// <summary>
+    /// Class representing a basic block for the dashboard.
+    /// </summary>
     public class DashboardBlock : IDashboardBlock {
 
         #region Properties
 
         public string Alias { get; private set; }
+
         public string View { get; private set; }
 
         #endregion

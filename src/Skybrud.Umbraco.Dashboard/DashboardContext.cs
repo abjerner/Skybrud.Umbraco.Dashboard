@@ -60,8 +60,11 @@ namespace Skybrud.Umbraco.Dashboard {
             get { return PluginCollection; }
         }
 
+        /// <summary>
+        /// Gets or sets the culture to be used in the dashboard.
+        /// </summary>
         public CultureInfo Culture {
-            get { return _cultureInfo; }
+            get { return _cultureInfo ?? new CultureInfo("da-DK"); }
             set { _cultureInfo = value ?? new CultureInfo("da-DK"); }
         }
 
@@ -113,12 +116,21 @@ namespace Skybrud.Umbraco.Dashboard {
             return value.ToString("N" + decimals, culture ?? Culture);
         }
 
-        public string Translate(string key) {
-            return "{" + key + "}";// DashboardTranslations.Instance.Translate(Culture, key);
+        /// <summary>
+        /// Translates the phrase with the specified <code>key</code>.
+        /// </summary>
+        /// <param name="key">The key of the phrase.</param>
+        /// <param name="args">The arguments to be inserted into the phrase.</param>
+        public string Translate(string key, params string[] args) {
+            return DashboardHelpers.Translate(Culture, key, args);
         }
 
+        /// <summary>
+        /// Translates the phrase matching the name of the specified <code>field</code>.
+        /// </summary>
+        /// <param name="field">The field.</param>
         public string Translate(IAnalyticsField field) {
-            return "{" + field.Name + "}";// DashboardTranslations.Instance.Translate(Culture, field.Name);
+            return DashboardHelpers.Translate(Culture, field);
         }
 
         #endregion

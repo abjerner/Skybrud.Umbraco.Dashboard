@@ -178,6 +178,23 @@ namespace Skybrud.Umbraco.Dashboard.Model.Analytics {
             return filters;
         }
 
+        private string GetDaySuffix(int day) {
+            switch (day) {
+                case 1:
+                case 21:
+                case 31:
+                    return "st";
+                case 2:
+                case 22:
+                    return "nd";
+                case 3:
+                case 23:
+                    return "rd";
+                default:
+                    return "th";
+            }
+        }
+
         internal object FormatCell(AnalyticsDataCell cell) {
 
             string key = cell.Column.Name.Substring(3);
@@ -185,8 +202,16 @@ namespace Skybrud.Umbraco.Dashboard.Model.Analytics {
             string text = cell.Value;
 
             switch (cell.Column.Name) {
-                case "ga:date": text = DateTime.ParseExact(text, "yyyyMMdd", null).ToString("d. MMM", new CultureInfo("da-DK")); break;
-                case "ga:yearWeek": text = "Uge " + Int32.Parse(text.Substring(4)); break;
+                case "ga:date": {
+                    DateTime date = DateTime.ParseExact(text, "yyyyMMdd", null);
+                    if (Context.Culture.TwoLetterISOLanguageName == "en") {
+                        text = date.Day + GetDaySuffix(date.Day) + " of " + date.ToString("MMM");
+                    } else {
+                        text = DateTime.ParseExact(text, "yyyyMMdd", null).ToString("d. MMM", Context.Culture);
+                    }
+                    break;
+                }
+                case "ga:yearWeek": text = Context.Translate("analytics_week_x", text.Substring(4)); break;
             }
 
             return new OmgDataRow {

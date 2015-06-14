@@ -22,8 +22,7 @@ namespace Skybrud.Umbraco.Dashboard.Plugins.Umbraco {
                     Id = t.Id,
                     Alias = t.Alias,
                     IsActive = t.IsActive,
-                    Label = t.Label,
-                    Properties = new List<DashboardProperty>()
+                    Label = t.Label
                 };
 
                 // Add any controls to the tab

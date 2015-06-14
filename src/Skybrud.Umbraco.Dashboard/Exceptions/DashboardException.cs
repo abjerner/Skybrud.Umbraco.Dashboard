@@ -4,7 +4,7 @@ using System.Net;
 namespace Skybrud.Umbraco.Dashboard.Exceptions {
 
     /// <summary>
-    /// In general exceptions shouldn't be used to the end-user, so the purpose of this class is to
+    /// In general exceptions shouldn't be sent to the end-user, so the purpose of this class is to
     /// be able to trigger exceptions that can be shown to the user.
     /// </summary>
     public class DashboardException : Exception {
@@ -25,19 +25,34 @@ namespace Skybrud.Umbraco.Dashboard.Exceptions {
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new exception based on the specified <code>message</code>.
+        /// </summary>
+        /// <param name="message">The message of the exception.</param>
         public DashboardException(string message) : base(message) {
             Code = HttpStatusCode.InternalServerError;
         }
 
+        /// <summary>
+        /// Initializes a new exception based on the specified <code>title</code> and <code>message</code>.
+        /// </summary>
+        /// <param name="title">The title of the exception.</param>
+        /// <param name="message">The message of the exception.</param>
         public DashboardException(string title, string message) : base(message) {
             Code = HttpStatusCode.InternalServerError;
             Title = title;
         }
 
+        /// <summary>
+        /// Initializes a new exception based on the specified <code>title</code> and <code>message</code>.
+        /// </summary>
         public DashboardException(HttpStatusCode code, string message) : base(message) {
             Code = code;
         }
 
+        /// <summary>
+        /// Initializes a new exception based on the specified <code>title</code> and <code>message</code>.
+        /// </summary>
         public DashboardException(HttpStatusCode code, string title, string message) : base(message) {
             Code = code;
             Title = title;

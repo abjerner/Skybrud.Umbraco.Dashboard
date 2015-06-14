@@ -17,6 +17,9 @@ namespace Skybrud.Umbraco.Dashboard.Model.Analytics.Blocks {
         [JsonIgnore]
         public object Data { get; set; }
 
+        [JsonProperty("datasets")]
+        public object[] Datasets { get; set; }
+
         [JsonProperty("items")]
         public object[] Items { get; set; }
 
@@ -99,6 +102,19 @@ namespace Skybrud.Umbraco.Dashboard.Model.Analytics.Blocks {
             
             }
 
+            var datasets = new object[] {
+                new {
+                    label = DashboardContext.Current.Translate(AnalyticsMetric.Pageviews),
+                    fillColor = "#35353d",
+                    strokeColor = "#35353d"
+                },
+                new  {
+                    label = DashboardContext.Current.Translate(AnalyticsMetric.Visits),
+                    fillColor = "red",//"rgba(141, 146, 157, 1)",
+                    strokeColor = "red"//"rgba(141, 146, 157, 1)"
+                }
+            };
+
             object[] items = (
                 from row in data.Rows
                 let first = row.Cells[0]
@@ -112,6 +128,7 @@ namespace Skybrud.Umbraco.Dashboard.Model.Analytics.Blocks {
             return new LineChartBlock {
                 HasData = data.Rows.Any(x => x.GetInt32(AnalyticsMetric.Visits) > 0),
                 Data = ddata,
+                Datasets = datasets,
                 Items = items.ToArray(),
                 Debug = new {
                     query = data.Query.ToJson(),

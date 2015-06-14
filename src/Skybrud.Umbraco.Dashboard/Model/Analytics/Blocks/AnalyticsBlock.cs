@@ -6,6 +6,14 @@ namespace Skybrud.Umbraco.Dashboard.Model.Analytics.Blocks {
 
     public class AnalyticsBlock : IDashboardBlock {
 
+        /// <summary>
+        /// Gets a reference to the dashboard context.
+        /// </summary>
+        [JsonIgnore]
+        public DashboardContext Dashboard {
+            get { return DashboardContext.Current; }
+        }
+
         public string Alias {
             get { return "Analytics"; }
         }
@@ -16,7 +24,7 @@ namespace Skybrud.Umbraco.Dashboard.Model.Analytics.Blocks {
 
         [JsonProperty("title")]
         public string Title {
-            get { return "Statistik"; }
+            get { return Dashboard.Translate("analytics_title"); }
         }
 
         /// <summary>
@@ -24,17 +32,17 @@ namespace Skybrud.Umbraco.Dashboard.Model.Analytics.Blocks {
         /// </summary>
         [JsonProperty("serviceurl")]
         public string ServiceUrl {
-            get { return DashboardContext.Current.GetServiceUrl<AnalyticsController>(); }
+            get { return Dashboard.GetServiceUrl<AnalyticsController>(); }
         }
 
         [JsonProperty("periods")]
         public object Periods {
             get {
                 return new[] {
-                    new { alias = "yesterday", text = "I går"},
-                    new { alias = "lastweek", text = "Sidste uge"},
-                    new { alias = "lastmonth", text = "Sidste måned"},
-                    new { alias = "lastyear", text = "Sidste år"}
+                    new { alias = "yesterday", text = Dashboard.Translate("analytics_yesterday")},
+                    new { alias = "lastweek", text = Dashboard.Translate("analytics_lastweek")},
+                    new { alias = "lastmonth", text = Dashboard.Translate("analytics_lastmonth")},
+                    new { alias = "lastyear", text = Dashboard.Translate("analytics_lastyear")},
                 };
             }
         }
@@ -44,7 +52,7 @@ namespace Skybrud.Umbraco.Dashboard.Model.Analytics.Blocks {
             get {
                 return new[] {
                     new {
-                        text = "Gå til Google Analytics",
+                        text = Dashboard.Translate("analytics_go_to"),
                         url = "https://www.google.com/analytics/web/",
                         target = "_blank",
                         classes = "next"
