@@ -1,6 +1,6 @@
 ﻿{
 	javascript: [
-		"~/App_Plugins/Skybrud.Dashboard/Scripts/Plugins/Chart.min.js",
+		"~/App_Plugins/Skybrud.Dashboard/Scripts/Plugins/Chart.js",
 		"~/App_Plugins/Skybrud.Dashboard/Scripts/Directives/Block.js",
 		"~/App_Plugins/Skybrud.Dashboard/Scripts/Directives/Loader.js",
 		"~/App_Plugins/Skybrud.Dashboard/Scripts/Directives/Pie.js",
