@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{8DA5DF79-99BD-4CEA-9506-D171466C9693}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -227,10 +227,38 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Plugins\Skybrud.Dashboard\Scripts\Controllers\Analytics.js" />
+    <Content Include="App_Plugins\Skybrud.Dashboard\Scripts\Directives\Block.js" />
+    <Content Include="App_Plugins\Skybrud.Dashboard\Scripts\Directives\Chart.js" />
+    <Content Include="App_Plugins\Skybrud.Dashboard\Scripts\Directives\Loader.js" />
+    <Content Include="App_Plugins\Skybrud.Dashboard\Scripts\Directives\Pie.js" />
+    <Content Include="App_Plugins\Skybrud.Dashboard\Scripts\Plugins\Chart.js" />
+    <Content Include="App_Plugins\Skybrud.Dashboard\Views\Blocks\Analytics.html" />
+    <Content Include="App_Plugins\Skybrud.Dashboard\Views\Blocks\AnalyticsDevices.html" />
+    <Content Include="App_Plugins\Skybrud.Dashboard\Views\Blocks\AnalyticsLineChart.html" />
+    <Content Include="App_Plugins\Skybrud.Dashboard\Views\Blocks\AnalyticsPopular.html" />
+    <Content Include="App_Plugins\Skybrud.Dashboard\Views\Blocks\AnalyticsVisits.html" />
+    <Content Include="App_Plugins\Skybrud.Dashboard\Views\Blocks\Chart.html" />
+    <Content Include="App_Plugins\Skybrud.Dashboard\Views\Blocks\Columns.html" />
+    <Content Include="App_Plugins\Skybrud.Dashboard\Views\Blocks\NuGet.html" />
+    <Content Include="App_Plugins\Skybrud.Dashboard\Views\Properties\DashboardSites.html" />
     <None Include="app.config" />
+    <Content Include="App_Plugins\Skybrud.Dashboard\package.manifest" />
+    <Content Include="App_Plugins\Skybrud.Dashboard\Styles\Default.css">
+      <DependentUpon>Default.less</DependentUpon>
+    </Content>
+    <Content Include="App_Plugins\Skybrud.Dashboard\Styles\Default.min.css">
+      <DependentUpon>Default.less</DependentUpon>
+    </Content>
+    <Content Include="App_Plugins\Skybrud.Dashboard\Styles\_loader.less" />
+    <Content Include="App_Plugins\Skybrud.Dashboard\Styles\Default.less" />
+    <Content Include="App_Plugins\Skybrud.Dashboard\Translations.json" />
     <None Include="packages.config" />
+    <None Include="Skybrud.Umbraco.Dashboard.nuspec" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="App_Plugins\Skybrud.Dashboard\Images\sprite.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

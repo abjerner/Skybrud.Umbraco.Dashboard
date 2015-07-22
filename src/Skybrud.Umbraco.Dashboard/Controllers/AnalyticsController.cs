@@ -8,7 +8,6 @@ using Skybrud.Umbraco.Dashboard.Interfaces;
 using Skybrud.Umbraco.Dashboard.Model.Analytics;
 using Skybrud.WebApi.Json;
 using Skybrud.WebApi.Json.Meta;
-using Umbraco.Core.Models.Membership;
 using Umbraco.Web.Mvc;
 using Umbraco.Web.WebApi;
 

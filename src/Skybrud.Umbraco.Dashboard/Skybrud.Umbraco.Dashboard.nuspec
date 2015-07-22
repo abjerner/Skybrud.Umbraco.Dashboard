@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>Anders Bjerner</authors>
+    <owners>Anders Bjerner</owners>
+    <licenseUrl>https://github.com/abjerner/Skybrud.Umbraco.Dashboard/blob/master/LICENSE.md</licenseUrl>
+    <projectUrl>https://github.com/abjerner/Skybrud.Umbraco.Dashboard</projectUrl>
+    <iconUrl>http://www.skybrud.dk/img/5431sk/icon/favicon.ico</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <tags>Umbraco, Dashboard, Analytics, Skybrud</tags>
+    <dependencies />
+  </metadata>
+  <files>
+    <file src="App_Plugins/Skybrud.Dashboard/*.*" />
+  </files>
+</package>
