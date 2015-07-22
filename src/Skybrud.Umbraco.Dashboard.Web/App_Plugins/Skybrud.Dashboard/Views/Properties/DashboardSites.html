@@ -4,6 +4,11 @@
         Statistics for
         <select ng-options="site.name for site in property.sites track by site.id" ng-model="site" style="height: 40px; margin-left: 5px; padding: 0 5px;"></select>
     </div>
+
+    <div style=" margin: 0; font-size: 26px; line-height: 40px; font-weight: normal;" ng-show="property.sites.length == 1">
+        Statistics for
+        <strong>{{property.sites[0].name}}</strong>
+    </div>
     
     <div class="blocks">
 		<div ng-repeat="block in site.blocks">
