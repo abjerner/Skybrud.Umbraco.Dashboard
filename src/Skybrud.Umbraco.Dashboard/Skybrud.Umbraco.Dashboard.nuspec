@@ -12,7 +12,10 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <tags>Umbraco, Dashboard, Analytics, Skybrud</tags>
-    <dependencies />
+    <dependencies>
+      <dependency id="Skybrud.Social" version="[0.9.3,1.0.0)" />
+      <dependency id="Skybrud.WebApi.Json" />
+    </dependencies>
   </metadata>
   <files>
     <file src="App_Plugins/Skybrud.Dashboard/*.*" />
