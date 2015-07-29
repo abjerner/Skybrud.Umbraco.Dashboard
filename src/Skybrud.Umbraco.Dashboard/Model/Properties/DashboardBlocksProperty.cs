@@ -36,7 +36,7 @@ namespace Skybrud.Umbraco.Dashboard.Model.Properties {
         /// </summary>
         /// <param name="alias">The alias of the property.</param>
         /// <param name="view">THe URL to the view of the property.</param>
-        public DashboardBlocksProperty(string alias, string view) : base(view, alias) {
+        public DashboardBlocksProperty(string alias, string view) : base(alias, view) {
             Blocks = new List<IDashboardBlock>();
         }
 
