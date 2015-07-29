@@ -242,7 +242,6 @@
     <Content Include="App_Plugins\Skybrud.Dashboard\Views\Blocks\Columns.html" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Views\Blocks\NuGet.html" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Views\Properties\DashboardSites.html" />
-    <None Include="app.config" />
     <Content Include="App_Plugins\Skybrud.Dashboard\package.manifest" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Styles\Default.css">
       <DependentUpon>Default.less</DependentUpon>
