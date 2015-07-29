@@ -33,7 +33,7 @@ namespace Skybrud.Umbraco.Dashboard.Model {
         /// Gets a list containing all the properties added to the tab.
         /// </summary>
         [JsonProperty("properties")]
-        public List<DashboardProperty> Properties { get; private set; }
+        public List<DashboardProperty> Properties { get; set; }
 
         #endregion
 
