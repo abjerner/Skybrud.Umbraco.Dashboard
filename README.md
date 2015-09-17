@@ -1,12 +1,27 @@
 # Skybrud.Umbraco.Dashboard 
 
-For now, this is a project that lets you add custom tabs and panels to a dashboard in Umbraco - all by using C#.
+This package can be divided and described in two seperate parts:
+
+1. The base of this package is to provide a way to manipulate tabs and panels in dashboards in Umbraco 7 - all by using C#. Currently in Umbraco, dashboards needs to be configured in `~/config/Dashboard.config`, but this package lets you add news tabs and panels as well as minipulating existing tabs and panels in Umbraco. Since this was thought as something other packages could use as well, I have created [an issue on the Umbraco tracker](http://issues.umbraco.org/issue/U4-6557) since I believe this is something that should be in the Umbraco core.
+
+2. Secondly, this package adds a few panels can you can add to a dashboard - eg. a panel for showing Analytics statistics for sites in your Umbraco installation. This package won't add any panels by default, so you need to do this by writing a bit of code yourself - you can find a bit of inspiration in the examples below.
 
 ## Links
 
+- <a href="#installation">Installation</a>
 - <a href="#quick-example">Quick example</a>
 - <a href="#so-why-does-this-work">So why does this work?</a>
 - <a href="#the-future">The Future</a>
+
+## Installation
+
+The code in this repository has been released as `v1.0.0-beta1`. The beta label is primarily because I hadn't testet the code thoroughly at the time of the release, but I haven't experienced any issues since the beta release.
+
+1. [**NuGet Package**][NuGetPackage]  
+Install this NuGet package in your Visual Studio project. Makes updating easy.
+
+2. [**ZIP file**][GitHubRelease]  
+Grab a ZIP file of the latest release; unzip and the files to the root directory of your website.
 
 ## Quick example
 
@@ -80,8 +95,5 @@ So when your editors log in, they could be presented with a view like this:
 ![An example](https://github.com/abjerner/Skybrud.Umbraco.Dashboard/blob/master/images/readme-dashboard-preview.png)
 
 
-
-
-
-
-
+[NuGetPackage]: https://www.nuget.org/packages/Skybrud.Umbraco.Dashboard
+[GitHubRelease]: https://github.com/abjerner/Skybrud.Umbraco.Dashboard/releases/latest
