@@ -1,0 +1,3 @@
+cd ../
+grunt release
+pause

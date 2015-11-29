@@ -6,3 +6,4 @@ src/Skybrud.Umbraco.Dashboard/App_Data/NuGetBackup/
 *.user
 src/Skybrud.Umbraco.Dashboard.Web/bin/
 src/Skybrud.Umbraco.Dashboard.Web/obj/
+node_modules/
