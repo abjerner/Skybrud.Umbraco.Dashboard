@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using Skybrud.Umbraco.Dashboard.Interfaces;
 using Skybrud.Umbraco.Dashboard.Model;
+using Umbraco.Core.Models.Membership;
+using Umbraco.Web;
 
 namespace Skybrud.Umbraco.Dashboard.Plugins {
 
@@ -12,6 +14,19 @@ namespace Skybrud.Umbraco.Dashboard.Plugins {
     /// </summary>
     public abstract class DashboardPluginBase : IDashboardPlugin {
 
+        #region Properties
+
+        /// <summary>
+        /// Gets a reference to the current backoffice user.
+        /// </summary>
+        public IUser User {
+            get { return UmbracoContext.Current.Security.CurrentUser; }
+        }
+
+        #endregion
+
+        #region Member methods
+
         public virtual void GetDashboard(string section, List<DashboardTab> tabs) { }
 
         public virtual void GetSites(List<IDashboardSite> sites) { }
@@ -19,6 +34,8 @@ namespace Skybrud.Umbraco.Dashboard.Plugins {
         public virtual IDashboardSite GetSiteById(int siteId) {
             return null;
         }
+
+        #endregion
 
     }
 
