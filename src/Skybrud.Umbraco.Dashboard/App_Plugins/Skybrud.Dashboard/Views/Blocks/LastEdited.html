@@ -1,0 +1,12 @@
+﻿<div class="block border links lastedited" ng-class="{loading: loading}" ng-controller="DashboardLastEditedController">
+    <h3>Senest ændrede sider</h3>
+    <ul class="list">
+        <li ng-repeat="item in items">
+            <div class="text">{{item.name}}</div>
+            <div class="value">{{item.updated}}</div>
+            <a ng-href="/umbraco/#/content/content/edit/{{item.id}}"></a>
+        </li>
+    </ul>
+    <span class="error" ng-if="!loading && items.length == 0">Hovsa. Der blev ikke fundet nogen sider.</span>
+    <dashboard-loader />
+</div>

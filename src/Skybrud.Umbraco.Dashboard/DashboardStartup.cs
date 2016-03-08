@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Mvc;
 using Skybrud.Umbraco.Dashboard.Controllers;
+using Skybrud.Umbraco.Dashboard.Indexing;
 using Umbraco.Core;
 using Umbraco.Web;
 using Umbraco.Web.UI.JavaScript;
@@ -14,6 +15,9 @@ namespace Skybrud.Umbraco.Dashboard {
 
             // Add server variables for the Dashboard
             ServerVariablesParser.Parsing += ServerVariablesParserOnParsing;
+            
+            // Add the indexer for the Dashboard
+            DashboardExamineIndexer.Init();
 
         }
 

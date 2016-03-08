@@ -1,0 +1,16 @@
+﻿<div ng-controller="Dashboard.AnalyticsProfileEditor.Controller">
+
+
+    <div ng-show="model.value.siteId">
+        <strong>{{model.value.siteName}}</strong>
+        <span>({{model.value.siteId}})</span>
+        <a href="#" class="btn btn-default" prevent-default="" ng-click="reset();">Nulstil</a>
+        <a href="#" class="btn btn-default" prevent-default="" ng-click="open();">Vælg et andet site</a>
+    </div>
+    <div ng-show="!model.value.siteId">
+        <a href="#" class="btn btn-default" prevent-default="" ng-click="open();">Vælg site</a>
+    </div>
+
+    <pre>{{model.value | json}}</pre>
+
+</div>

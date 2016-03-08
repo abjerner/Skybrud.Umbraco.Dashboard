@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Web;
@@ -93,11 +94,10 @@ namespace Skybrud.Umbraco.Dashboard.Model.Analytics {
                 case DataQueryType.Page:
                     response.AddBlock(VisitsBlock.GetBlock(this));
                     response.AddBlock(DevicesBlock.GetBlock(this));
-                    throw new NotImplementedException();
-                    //response.Page = new {
-                    //    id = PageId,
-                    //    url = PageUrl
-                    //};
+                    response.Page = new {
+                        id = PageId,
+                        url = PageUrl
+                    };
                     break;
                 case DataQueryType.Site:
                     response.AddBlock(VisitsBlock.GetBlock(this));
@@ -114,7 +114,10 @@ namespace Skybrud.Umbraco.Dashboard.Model.Analytics {
         internal AnalyticsDataResponse GetCachedData(string key, AnalyticsDataOptions options) {
 
             // Declare the path to the cache directory
-            string cacheDir = HttpContext.Current.Server.MapPath("~/App_Data/Skybrud.Dashboard/AnalyticsCache/" + (PageId > 0 ? "Pages/" : ""));
+            string cacheDir = HttpContext.Current.Server.MapPath(DashboardConstants.AnalyticsCachePath + (PageId > 0 ? "Pages/" : ""));
+
+            // Make sure the cache directory exists
+            if (!Directory.Exists(cacheDir)) Directory.CreateDirectory(cacheDir);
 
             // Generate a combined key
             string combinedKey = (PageId > 0 ? PageId + "" : Site.Analytics.ProfileId) + "_" + key + "_" + Days + ".json";
@@ -259,11 +262,82 @@ namespace Skybrud.Umbraco.Dashboard.Model.Analytics {
 
             int change = valueNew - valueOld;
 
+            double percent = change / (double) valueOld * 100;
+            
             return new OmgDataRow {
                 Alias = key,
                 Label = Context.Translate(field),
                 Value = new { raw = valueNew, text = Context.Format(valueNew) },
-                Change = new { raw = change, text = Context.Format(change) },
+                OldValue = new { raw = valueOld, text = Context.Format(valueOld) },
+                Change = new {
+                    raw = change,
+                    text = Context.Format(change),
+                    percent = new {
+                        raw = Double.IsInfinity(percent) ? null : (object)percent,
+                        text = Double.IsInfinity(percent) ? null : Context.Format(percent)
+                    }
+                }
+            };
+
+        }
+
+        internal object FormatVisitDataTime(IAnalyticsField field, AnalyticsDataRow row1, AnalyticsDataRow row2) {
+
+            string key = field.Name.Substring(3);
+
+            double valueOld = (row1 == null ? 0 : row1.GetDouble(field));
+            double valueNew = (row2 == null ? 0 : row2.GetDouble(field));
+
+            double change = valueNew - valueOld;
+
+            double percent = change / valueOld * 100;
+
+            TimeSpan ts1 = TimeSpan.FromSeconds(valueOld);
+            TimeSpan ts2 = TimeSpan.FromSeconds(valueNew);
+            TimeSpan ts3 = TimeSpan.FromSeconds(change);
+
+            List<string> text1 = new List<string>();
+            List<string> text2 = new List<string>();
+            List<string> text3 = new List<string>();
+
+
+            if (ts1.TotalSeconds < 10) {
+                text1.Add(ts1.TotalSeconds.ToString("0.00") + "s");
+            } else {
+                if (ts1.Hours > 0) text1.Add(ts1.Hours + "t");
+                if (ts1.Minutes > 0) text1.Add(ts1.Minutes + "m");
+                if (ts1.Seconds > 0) text1.Add(ts1.Seconds + "s");
+            }
+
+            if (ts2.TotalSeconds < 10) {
+                text2.Add(ts2.TotalSeconds.ToString("0.00") + "s");
+            } else {
+                if (ts2.Hours > 0) text2.Add(ts2.Hours + "t");
+                if (ts2.Minutes > 0) text2.Add(ts2.Minutes + "m");
+                if (ts2.Seconds > 0) text2.Add(ts2.Seconds + "s");
+            }
+
+            if (Math.Abs(ts3.TotalSeconds) < 10) {
+                text3.Add(ts3.TotalSeconds.ToString("0.00") + "s");
+            } else {
+                if (Math.Abs(ts3.Hours) > 0) text3.Add(ts3.Hours + "t");
+                if (Math.Abs(ts3.Minutes) > 0) text3.Add(ts3.Minutes + "m");
+                if (Math.Abs(ts3.Seconds) > 0) text3.Add(ts3.Seconds + "s");
+            }
+
+            return new OmgDataRow {
+                Alias = key,
+                Label = Context.Translate(field),
+                OldValue = new { raw = valueOld, text = String.Join(" og ", text1) },
+                Value = new { raw = valueNew, text = String.Join(" og ", text2) },
+                Change = new {
+                    raw = change,
+                    text = String.Join(" og ", text3),
+                    percent = new {
+                        raw = Double.IsInfinity(percent) ? null : (object) percent,
+                        text = Double.IsInfinity(percent) ? null : Context.Format(percent)
+                    }
+                },
             };
 
         }
@@ -277,11 +351,21 @@ namespace Skybrud.Umbraco.Dashboard.Model.Analytics {
 
             double change = valueNew - valueOld;
 
+            double percent = change / valueOld * 100;
+
             return new OmgDataRow {
                 Alias = key,
                 Label = Context.Translate(field),
                 Value = new { raw = valueNew, text = Context.Format(valueNew) },
-                Change = new { raw = change, text = Context.Format(change) },
+                OldValue = new { raw = valueOld, text = Context.Format(valueOld) },
+                Change = new {
+                    raw = change,
+                    text = Context.Format(change),
+                    percent = new {
+                        raw = Double.IsInfinity(percent) ? null : (object)percent,
+                        text = Double.IsInfinity(percent) ? null : Context.Format(percent)
+                    }
+                },
             };
 
         }
@@ -367,6 +451,9 @@ namespace Skybrud.Umbraco.Dashboard.Model.Analytics {
 
             [JsonProperty("value", NullValueHandling = NullValueHandling.Include)]
             public object Value { get; set; }
+
+            [JsonProperty("oldValue", NullValueHandling = NullValueHandling.Include)]
+            public object OldValue { get; set; }
 
             [JsonProperty("change", NullValueHandling = NullValueHandling.Ignore)]
             public object Change { get; set; }

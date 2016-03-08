@@ -1,0 +1,37 @@
+﻿<div class="dashboard" ng-controller="DashboardSiteStatisticsController">
+
+    <div ng-show="!published" class="alert alert-info">
+        <strong>Ikke publiceret</strong><br />
+        Der kan ikke vises statistik for denne side, da den ikke er publiceret.
+    </div>
+
+    <div ng-show="error && error.meta.code == 404" class="alert alert-info">
+        {{error.meta.error}}
+    </div>
+    
+    <div ng-show="error && error.meta.code != 404" class="alert alert-danger">
+        {{error.meta.error}}
+    </div>
+
+    <div ng-show="!error && site">
+        
+        <div style=" margin: 0; font-size: 26px; line-height: 40px; font-weight: normal;">
+            Statistik for
+            <strong>{{site.name}}</strong>
+        </div>
+        
+        <div ng-show="site.blocks.length == 0" class="alert alert-info" style="margin-top: 10px;">
+            <strong>Ingen statistik</strong><br />
+            Der er ingen tilgængelig statistik for dette site.
+        </div>
+
+        <div class="blocks">
+
+            <div ng-repeat="block in site.blocks">
+                <dashboard-block model="block" />
+            </div>
+        </div>
+
+    </div>
+
+</div>

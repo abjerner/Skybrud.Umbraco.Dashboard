@@ -32,8 +32,7 @@ namespace Skybrud.Umbraco.Dashboard.Model.Analytics.Blocks {
 
             switch (query.Type) {
                 case DataQueryType.Page:
-                    throw new NotImplementedException();
-                    //options.Filters = query.CreateFilterOptionsFromPageUrls();
+                    options.Filters = query.CreateFilterOptionsFromPageUrls();
                     break;
             }
 

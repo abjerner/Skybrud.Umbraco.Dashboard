@@ -1,10 +1,14 @@
 ﻿<div class="block visits">
     <h3>{{block.title}}</h3>
     <table class="details">
-		<tr ng-repeat="item in block.items" ng-class="{up: item.change.raw > 0, down: item.change.raw < 0}">
-			<td class="text">{{item.label}}</td>
-			<td class="value">{{item.value.text}}</td>
-			<td class="change">{{item.change.text}}</td>
-		</tr>
+        <tr ng-repeat="item in block.items" ng-class="{up: item.change.raw > 0, down: item.change.raw < 0}">
+            <td class="text">{{item.label}}</td>
+            <td class="value">{{item.value.text}}</td>
+            <td class="change">{{item.change.text}}</td>
+            <td class="change">
+                <span ng-show="item.change.percent.text">{{item.change.percent.text}}%</span>
+                <span ng-show="!item.change.percent.text" title="Den procentvise ændring kunne ikke udregnes">??</span>
+            </td>
+        </tr>
     </table>
 </div>

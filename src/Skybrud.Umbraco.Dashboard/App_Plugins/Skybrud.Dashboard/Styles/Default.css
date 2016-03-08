@@ -1,4 +1,4 @@
-.block h3 {
+﻿.block h3 {
   margin: 0 0 10px 0;
   color: #b3b3b3;
   font-size: 14px;
@@ -6,69 +6,36 @@
   font-weight: bold;
   line-height: 14px;
 }
-.block.columns {
-  display: flex;
-}
-.block.columns > div {
-  margin-left: 2%;
-  width: 32%;
-  box-sizing: border-box;
-}
-.block.columns > div:first-child {
-  margin-left: 0;
-}
 .block.border {
   border: 1px solid #efefef;
   border-radius: 4px;
   padding: 15px;
 }
-.block.nuget ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.block.nuget .positive .change:after {
-  background: url('/App_Plugins/Skybrud.Dashboard/Images/sprite.png?2') -16px -63px no-repeat;
-}
-.block.nuget .negative .change:after {
-  background: url('/App_Plugins/Skybrud.Dashboard/Images/sprite.png?2') -32px -63px no-repeat;
-}
-.block.nuget .change {
-  position: relative;
-  padding: 0 18px 0 15px;
-}
-.block.nuget .change:after {
-  display: block;
-  content: ' ';
-  width: 16px;
-  height: 16px;
-  position: absolute;
-  top: 10px;
-  right: -2px;
-}
-.block.loading > div > div.loader {
+.block.loading > div.DashboardLoader,
+.block.loading > div > div.DashboardLoader {
   display: block;
 }
 .block h3 {
   margin: 0 0 10px 0;
 }
-.block ul {
+.block ul.list {
   margin: 0;
   padding: 0;
   list-style-type: none;
 }
-.block li {
+.block ul.list li {
   border-top: 1px solid #dddddd;
   line-height: 36px;
   white-space: nowrap;
 }
-.block ul li:first-child {
+.block ul.list li:first-child {
   border-top: 0;
 }
 .dashboard > .blocks {
   margin-bottom: 20px;
 }
 .block {
+  position: relative;
   margin-top: 20px;
 }
 .block table.list {
@@ -101,11 +68,11 @@ tr.negative {
 tr.positive {
   color: #27a216 !important;
 }
-.block.links li {
+.block.links > ul > li {
   position: relative;
   height: 36px;
 }
-.block.links li .text {
+.block.links > ul > li .text {
   position: absolute;
   left: 0px;
   right: 110px;
@@ -115,7 +82,7 @@ tr.positive {
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
 }
-.block.links li .text:before {
+.block.links > ul > li .text:before {
   position: absolute;
   left: 0;
   top: 10px;
@@ -125,7 +92,7 @@ tr.positive {
   display: block;
   background: url('/App_Plugins/Skybrud.Dashboard/Images/sprite.png?2') -50px -63px no-repeat;
 }
-.block.links li .value {
+.block.links > ul > li .value {
   position: absolute;
   right: 25px;
   width: 70px;
@@ -133,7 +100,7 @@ tr.positive {
   text-align: right;
   color: #b3b3b3;
 }
-.block.links li a {
+.block.links > ul > li a {
   position: absolute;
   right: 0;
   margin-top: 8px;
@@ -146,7 +113,7 @@ tr.positive {
   height: 20px;
   color: transparent;
 }
-.block.links li a:after {
+.block.links > ul > li a:after {
   position: absolute;
   top: 2px;
   left: 2px;
@@ -157,7 +124,7 @@ tr.positive {
   background: url('/App_Plugins/Skybrud.Dashboard/Images/sprite.png?2') 0 -63px no-repeat;
   display: block;
 }
-.block.links li a:hover {
+.block.links > ul > li a:hover {
   background: #35353d;
 }
 .box {
@@ -241,6 +208,12 @@ tr.positive {
   margin: 10px;
   min-height: 175px;
 }
+.box.analytics {
+  /*.blocks > div + div {
+        margin-top: 0;
+        margin-left: 2%;
+    }*/
+}
 .box.analytics.loading .tabs a:not(.active) {
   opacity: 0.55;
   cursor: default !important;
@@ -257,7 +230,7 @@ tr.positive {
 .box.analytics.loading > .content * {
   cursor: default !important;
 }
-.box.analytics.loading .loader {
+.box.analytics.loading .DashboardLoader {
   display: block;
 }
 .box.analytics.haserror .error {
@@ -273,15 +246,17 @@ tr.positive {
 .box.analytics .blocks {
   margin: 10px;
   min-height: 175px;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -20px;
 }
 .box.analytics .blocks > div {
-  float: left;
-  width: 32%;
+  margin-right: 30px;
   min-height: 175px;
-}
-.box.analytics .blocks > div + div {
-  margin-top: 0;
-  margin-left: 2%;
+  flex-grow: 1;
+  flex-basis: 400px;
 }
 .box.analytics .blocks:after {
   content: " ";
@@ -322,6 +297,7 @@ tr.positive {
   height: 36px;
 }
 .visits li .text {
+  width: 100%;
   display: inline-block;
   padding: 2px 4px;
   font-size: inherit;
@@ -356,7 +332,7 @@ tr.positive {
   color: #27a216;
   position: relative;
 }
-.visits li.up .change:after {
+.visits li.up td.change:last-child:after {
   position: absolute;
   right: -2px;
   top: 10px;
@@ -369,7 +345,7 @@ tr.positive {
 .visits li.down {
   color: #941414;
 }
-.visits li.down .change:after {
+.visits li.down td.change:last-child:after {
   position: absolute;
   right: -2px;
   top: 10px;
@@ -394,6 +370,9 @@ tr.positive {
   padding: 0;
   line-height: 36px;
 }
+.visits table.details .text {
+  width: 100%;
+}
 .visits table.details .label {
   width: 100%;
 }
@@ -410,7 +389,7 @@ tr.positive {
   padding: 0 18px 0 15px;
   text-align: right;
 }
-.visits table.details .change:after {
+.visits table.details td.change:last-child:after {
   display: block;
   content: ' ';
   width: 16px;
@@ -478,7 +457,111 @@ tr.positive {
 .box.analytics .block.devices li:nth-child(3) .text:before {
   background-color: #8d929d;
 }
-.loader {
+.block.columns {
+  display: flex;
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -20px;
+}
+.block.columns > div {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  flex-grow: 1;
+  flex-basis: 400px;
+  margin-right: 20px;
+  margin-left: 0 !important;
+}
+.block.columns > div.dummy {
+  margin: 0 !important;
+}
+.modal.dashboard-dialog {
+  top: 60px !important;
+  bottom: 60px !important;
+  border-radius: 0;
+  border: none !important;
+  outline: 6px solid rgba(53, 53, 53, 0.85);
+  outline: 6px solid rgba(53, 53, 53, 0.35);
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  background: white;
+}
+.dashboard-dialog-header {
+  border-bottom: 1px solid #D9D9D9;
+  background: #F8F8F8;
+  padding: 10px 10px 9px 10px;
+}
+.dashboard-dialog-title {
+  font-weight: bold;
+  color: #666;
+}
+.dashboard-dialog-close {
+  float: right;
+  cursor: pointer;
+  margin: 3px 10px 0 10px;
+  width: 13px;
+  height: 13px;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAA0BAMAAACjsK8qAAAAElBMVEU1NTX///81NTU1NTU1NTU1NTULAPs8AAAABXRSTlMAAE1ff0ewNRQAAABiSURBVHhenY+xCcAwEAMFXiAKeAFPYPgF0qSPi99/ldgfRIrgwlFzyBL/fjC0/edeSgHEae/0oQMBv9bZSIjfXPOn+5EqLGgpCLMaTAZ55W9//Z6WnUG2oJM52K28cvXn99yO6EJ4CpOkCAAAAABJRU5ErkJggg==') /*/App_Plugins/Skybrud.Social/Images/sprite.png*/ no-repeat 0 -26px;
+}
+.dashboard-dialog-close:hover {
+  background-position: 0 -39px;
+}
+.dashboard-dialog-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 40px;
+  bottom: 0;
+  padding: 10px;
+  overflow-y: auto;
+}
+.dashboard-dialog-content.has-footer {
+  bottom: 50px;
+}
+.dashboard-dialog-footer {
+  border-top: 1px solid #D9D9D9;
+  background: #F8F8F8;
+  padding: 10px 10px 9px 10px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.row {
+  display: flex;
+}
+.col-title {
+  width: 700px;
+}
+.col-date {
+  width: 225px;
+}
+.div-table {
+  border: 1px solid #dbdbdb;
+}
+.div-table .thead {
+  border-bottom: 2px solid #dbdbdb;
+}
+.div-table .thead .col {
+  padding: 8px;
+  line-height: 20px;
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: #f8f8f8;
+}
+.div-table .tbody .row + .row {
+  border-top: 1px solid #dbdbdb;
+}
+.div-table .tbody .col {
+  padding: 8px;
+  line-height: 20px;
+  text-align: left;
+  vertical-align: top;
+}
+.DashboardLoader {
   display: none;
   position: absolute;
   top: 0;
@@ -487,10 +570,10 @@ tr.positive {
   bottom: 0;
   z-index: 9001;
 }
-.box.analytics .loader {
+.box.analytics .DashboardLoader {
   top: 72px;
 }
-.loading .loader {
+.DashboardLoader .loader {
   display: block;
 }
 .column.loading .loader,
@@ -621,3 +704,4 @@ tr.positive {
     -webkit-transform: scale(1);
   }
 }
+/*# sourceMappingURL=Default.css.map */

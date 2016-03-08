@@ -35,6 +35,10 @@ namespace Skybrud.Umbraco.Dashboard.Plugins {
             return null;
         }
 
+        public virtual IDashboardPage GetPageById(int siteId) {
+            return null;
+        }
+
         #endregion
 
     }

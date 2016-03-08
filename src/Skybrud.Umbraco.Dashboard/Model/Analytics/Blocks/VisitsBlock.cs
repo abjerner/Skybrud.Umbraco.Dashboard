@@ -39,8 +39,7 @@ namespace Skybrud.Umbraco.Dashboard.Model.Analytics.Blocks {
 
             switch (query.Type) {
                 case DataQueryType.Page:
-                    throw new NotImplementedException();
-                    //options.Filters = query.CreateFilterOptionsFromPageUrls();
+                    options.Filters = query.CreateFilterOptionsFromPageUrls();
                     break;
             }
 
@@ -59,7 +58,7 @@ namespace Skybrud.Umbraco.Dashboard.Model.Analytics.Blocks {
                     query.FormatVisitDataInt32(AnalyticsMetric.Visits, row1, row2),
                     query.FormatVisitDataInt32(AnalyticsMetric.Pageviews, row1, row2),
                     query.FormatVisitDataInt32(AnalyticsMetric.NewVisits, row1, row2),
-                    query.FormatVisitDataDouble(AnalyticsMetric.AvgTimeOnSite, row1, row2)
+                    query.FormatVisitDataTime(AnalyticsMetric.AvgTimeOnSite, row1, row2)
                 }
             };
 

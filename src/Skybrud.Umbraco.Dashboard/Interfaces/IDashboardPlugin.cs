@@ -22,10 +22,16 @@ namespace Skybrud.Umbraco.Dashboard.Interfaces {
         void GetSites(List<IDashboardSite> sites);
 
         /// <summary>
-        /// Gets a site by the specified <code>siteId</code>.
+        /// Gets the site by the specified <code>siteId</code>.
         /// </summary>
         /// <param name="siteId">The ID of the site.</param>
         IDashboardSite GetSiteById(int siteId);
+
+        /// <summary>
+        /// Gets the page by the specified <code>pageId</code>.
+        /// </summary>
+        /// <param name="pageId">The ID of the page.</param>
+        IDashboardPage GetPageById(int pageId);
 
     }
 

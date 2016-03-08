@@ -1,21 +1,10 @@
 ﻿<div class="block links">
     <h3>{{block.title}}</h3>
-    <!--
-    <table class="details">
-		<tr ng-repeat="item in block.items" ng-class="{up: item.change.raw > 0, down: item.change.raw < 0}">
-			<td class="label" title="{{item.path}}">{{item.url}}</td>
-		    <td class="value" style="position: relative;">
-		        <div style="position: absolute; left: 0; right: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{item.visits.text}}</div>
-		    </td>
-			<td class="link"><a href="{{item.fullurl}}" target="_blank"></a></td>
-		</tr>
-    </table>
-    -->
-    <ul>
-		<li ng-repeat="item in block.items">
-			<div class="text" title="{{item.path}}">{{item.url}}</div>
-			<div class="value">{{item.visits.text}}</div>
-			<a href="{{item.fullurl}}" target="_blank"></a>
-		</li>
-	</ul>
+    <ul class="list">
+        <li ng-repeat="item in block.items">
+            <div class="text" title="{{item.path}}">{{item.url}}</div>
+            <div class="value">{{item.visits.text}}</div>
+            <a href="{{item.fullurl}}" target="_blank"></a>
+        </li>
+    </ul>
 </div>

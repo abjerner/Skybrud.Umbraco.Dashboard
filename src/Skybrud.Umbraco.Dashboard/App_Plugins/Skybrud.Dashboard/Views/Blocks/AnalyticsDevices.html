@@ -2,7 +2,7 @@
     <h3>{{block.title}}</h3>
     <div ng-if="block.hasData">
 	    <dashboard-pie data="block.items"></dashboard-pie>
-        <ul>
+        <ul class="list">
             <li ng-repeat="item in block.items">
                 <div class="text">{{item.text}}</div>
                 <div class="value">{{item.visits.percent.text}}</div>

@@ -19,7 +19,9 @@
 	  "analytics_lastyear": "Sidste år",
 	  "analytics_go_to": "Gå til Google Analytics",
 	  "analytics_title": "Statistik",
-	  "analytics_week_x": "Uge {0}"
+        "analytics_week_x": "Uge {0}",
+        "today": "I dag",
+        "yesterday": "I går"
     }
   },{
     alias: "en-GB",
@@ -41,7 +43,9 @@
 	  "analytics_lastyear": "Last year",
 	  "analytics_go_to": "Go to Google Analytics",
 	  "analytics_title": "Statistics",
-	  "analytics_week_x": "Week {0}"
+	  "analytics_week_x": "Week {0}",
+        "today": "Today",
+        "yesterday": "Yesterday"
     }
   }
 ]

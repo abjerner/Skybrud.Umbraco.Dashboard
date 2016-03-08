@@ -51,16 +51,34 @@
 
         $scope.period = tab;
 
-        // Make the call to the dashboard analytics service
-        var http = $http({
-            method: 'GET',
-            url: $scope.block.serviceurl + 'GetSiteData',
-            params: {
-                siteId: $scope.site.id,
-                period: $scope.period.alias,
-                cache: true
-            }
-        });
+        if ($scope.page && $scope.page.id > 0) {
+
+            // Make the call to the dashboard analytics service
+            $http({
+                method: 'GET',
+                url: $scope.block.serviceurl + 'GetPageData',
+                params: {
+                    siteId: $scope.site.id,
+                    pageId: $scope.page.id,
+                    period: $scope.period.alias,
+                    cache: true
+                }
+            }).success(callbackSuccess).error(callbackError);
+
+        } else {
+
+            // Make the call to the dashboard analytics service
+            var http = $http({
+                method: 'GET',
+                url: $scope.block.serviceurl + 'GetSiteData',
+                params: {
+                    siteId: $scope.site.id,
+                    period: $scope.period.alias,
+                    cache: true
+                }
+            });
+
+        }
 
         // Show the loader for at least 200 ms
         var timer = $timeout(function () { }, 200);

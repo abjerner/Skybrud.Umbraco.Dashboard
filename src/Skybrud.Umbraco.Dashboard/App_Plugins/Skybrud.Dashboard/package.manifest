@@ -1,13 +1,54 @@
 ﻿{
-	javascript: [
-		"~/App_Plugins/Skybrud.Dashboard/Scripts/Plugins/Chart.js",
-		"~/App_Plugins/Skybrud.Dashboard/Scripts/Directives/Block.js",
-		"~/App_Plugins/Skybrud.Dashboard/Scripts/Directives/Loader.js",
-		"~/App_Plugins/Skybrud.Dashboard/Scripts/Directives/Pie.js",
-		"~/App_Plugins/Skybrud.Dashboard/Scripts/Directives/Chart.js",
-		"~/App_Plugins/Skybrud.Dashboard/Scripts/Controllers/Analytics.js"
-	],
-	css: [
-		"~/App_Plugins/Skybrud.Dashboard/Styles/Default.css"
-	]
+    "propertyEditors": [
+        {
+            "alias": "Skybrud.Dashboard.SiteStatistics",
+            "name": "Dashboard - Site Statistics",
+            "icon": "icon-chart",
+            "group": "Skybrud.Dashboard",
+            "editor": {
+                "view": "~/App_Plugins/Skybrud.Dashboard/Views/PropertyEditors/DashboardSiteStatistics.html",
+                "hideLabel": true,
+                "valueType": "JSON",
+                "isReadOnly": true
+            }
+        },
+        {
+            "alias": "Skybrud.Dashboard.PageStatistics",
+            "name": "Dashboard - Page Statistics",
+            "icon": "icon-chart",
+            "group": "Skybrud.Dashboard",
+            "editor": {
+                "view": "~/App_Plugins/Skybrud.Dashboard/Views/PropertyEditors/DashboardPageStatistics.html",
+                "hideLabel": true,
+                "valueType": "JSON",
+                "isReadOnly": true
+            }
+        },
+        {
+            "alias": "Skybrud.Dashboard.AnalyticsProfile",
+            "name": "Dashboard - Analytics Profile",
+            "icon": "icon-user",
+            "group": "Skybrud.Dashboard",
+            "editor": {
+                "valueType": "JSON",
+                "view": "~/App_Plugins/Skybrud.Dashboard/Views/PropertyEditors/AnalyticsProfile.html"
+            }
+        }
+    ],
+    "javascript": [
+        "~/App_Plugins/Skybrud.Dashboard/Scripts/Plugins/Chart.js",
+        "~/App_Plugins/Skybrud.Dashboard/Scripts/Directives/Block.js",
+        "~/App_Plugins/Skybrud.Dashboard/Scripts/Directives/Loader.js",
+        "~/App_Plugins/Skybrud.Dashboard/Scripts/Directives/Pie.js",
+        "~/App_Plugins/Skybrud.Dashboard/Scripts/Directives/Chart.js",
+        "~/App_Plugins/Skybrud.Dashboard/Scripts/Controllers/Analytics.js",
+        "~/App_Plugins/Skybrud.Dashboard/Scripts/Controllers/Columns.js",
+        "~/App_Plugins/Skybrud.Dashboard/Scripts/Controllers/Sites.js",
+        "~/App_Plugins/Skybrud.Dashboard/Scripts/Controllers/SiteStatistics.js",
+        "~/App_Plugins/Skybrud.Dashboard/Scripts/Controllers/PageStatistics.js",
+        "~/App_Plugins/Skybrud.Dashboard/Scripts/Controllers/LastEdited.js"
+    ],
+    "css": [
+        "~/App_Plugins/Skybrud.Dashboard/Styles/Default.css"
+    ]
 }

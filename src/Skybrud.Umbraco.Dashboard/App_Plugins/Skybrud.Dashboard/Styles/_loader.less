@@ -1,4 +1,6 @@
-﻿.loader {
+﻿@loaderAlias: DashboardLoader;
+
+.@{loaderAlias} {
     display: none;
     position: absolute;
     top: 0;
@@ -8,9 +10,9 @@
 	z-index: 9001;
 }
 
-.box.analytics .loader { top: 72px; }
+.box.analytics .@{loaderAlias} { top: 72px; }
 
-&.loading .loader {
+&.@{loaderAlias} .loader {
 	display: block;
 }
 

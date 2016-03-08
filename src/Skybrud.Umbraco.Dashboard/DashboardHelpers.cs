@@ -1,6 +1,12 @@
 ﻿using System.Globalization;
+using System.IO;
+using System.Text;
 using System.Web;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Skybrud.Social.Google.Analytics.Interfaces;
+using Skybrud.Umbraco.Dashboard.Extensions.JObject;
+using Skybrud.Umbraco.Dashboard.Interfaces;
 using Umbraco.Core.Models.Membership;
 using Umbraco.Web;
 
@@ -23,7 +29,7 @@ namespace Skybrud.Umbraco.Dashboard {
         public static string GetCachableUrl(string url) {
             if (url != null && url.StartsWith("/") && !url.StartsWith("//")) {
                 string path = HttpContext.Current.Server.MapPath(url);
-                return System.IO.File.Exists(path) ? url + "?" + System.IO.File.GetLastWriteTime(path).Ticks : url;
+                return File.Exists(path) ? url + "?" + File.GetLastWriteTime(path).Ticks : url;
             }
             return url;
         }
@@ -86,6 +92,101 @@ namespace Skybrud.Umbraco.Dashboard {
                 }
             }
             return new CultureInfo("en-GB");
+        }
+
+        /// <summary>
+        /// Static class for working with user settings in relation to the Dashboard.
+        /// </summary>
+        public static class UserSettings {
+
+            /// <summary>
+            /// Sets the default <code>site</code> of the specified backoffice <code>user</code>.
+            /// </summary>
+            /// <param name="user">The user.</param>
+            /// <param name="site">The site.</param>
+            public static void SetDefaultSite(IUser user, IDashboardSite site) {
+                if (user == null || site == null) return;
+                SetValue(user, "site", site.Id);
+            }
+
+            /// <summary>
+            /// Gets the ID of the default site of the specified backoffice <code>user</code>.
+            /// </summary>
+            /// <param name="user"></param>
+            /// <returns></returns>
+            public static int GetDefaultSiteId(IUser user) {
+                return GetInt32(user, "site");
+            }
+
+            private static JObject GetUserSettings(IUser user) {
+
+                // Declare the path to the settings file of the specified user
+                string path = HttpContext.Current.Server.MapPath(DashboardConstants.UserSettingsCachePath + user.Id + ".json");
+
+                // Return an empty JObject if the file isn't found
+                if (!File.Exists(path)) return new JObject();
+
+                // Read the raw contents of the file
+                string contents = File.ReadAllText(path);
+
+                // Parse the contents into an instance of JObject
+                return JObject.Parse(contents).GetObject("settings") ?? new JObject();
+
+            }
+
+            /// <summary>
+            /// Gets the integer value of the setting matching the specified <code>user</code> and <code>propertyName</code>.
+            /// </summary>
+            /// <param name="user">The user.</param>
+            /// <param name="propertyName">The name of the property.</param>
+            /// <returns>Returns the integer (32-bit) value of the settings property.</returns>
+            public static int GetInt32(IUser user, string propertyName) {
+                return GetUserSettings(user).GetInt32(propertyName);
+            }
+
+            /// <summary>
+            /// Gets the string value of the setting matching the specified <code>user</code> and <code>propertyName</code>.
+            /// </summary>
+            /// <param name="user">The user.</param>
+            /// <param name="propertyName">The name of the property.</param>
+            /// <returns>Returns the integer (32-bit) value of the settings property.</returns>
+            public static string GetString(User user, string propertyName) {
+                return GetUserSettings(user).GetString(propertyName);
+            }
+
+            public static void SetValue(IUser user, string propertyName, object value) {
+
+                string path2 = HttpContext.Current.Server.MapPath(DashboardConstants.UserSettingsCachePath);
+                string path3 = HttpContext.Current.Server.MapPath(DashboardConstants.UserSettingsCachePath + user.Id + ".json");
+
+                if (!Directory.Exists(path2)) Directory.CreateDirectory(path2);
+
+                // Load or initialize the root JObject
+                JObject obj = File.Exists(path3) ? JObject.Parse(File.ReadAllText(path3, Encoding.UTF8)) : new JObject {
+                    {"id", user.Id},
+                    {"username", user.Username},
+                    {"settings", new JObject()}
+                };
+
+                // Get the settings object
+                JObject settings = obj.GetObject("settings");
+
+                // Get the original JSON value for comparison
+                string original = obj.ToString(Formatting.Indented);
+
+                // Set the property value
+                settings[propertyName] = value == null ? null : JToken.FromObject(value);
+
+                // Serialize the new JSON value
+                string serialized = obj.ToString(Formatting.Indented);
+
+                // Update the file if the value has changed
+                if (original != serialized) {
+                    File.WriteAllText(path3, serialized, Encoding.UTF8);
+                }
+
+            }
+
         }
     
     }

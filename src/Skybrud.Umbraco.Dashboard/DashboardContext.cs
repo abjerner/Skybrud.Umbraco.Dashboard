@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 using Skybrud.Social.Google.Analytics.Interfaces;
+using Skybrud.Umbraco.Dashboard.Config;
 using Skybrud.Umbraco.Dashboard.Interfaces;
 using Skybrud.Umbraco.Dashboard.Plugins;
 using Skybrud.Umbraco.Dashboard.Plugins.Umbraco;
@@ -68,11 +71,18 @@ namespace Skybrud.Umbraco.Dashboard {
             set { _cultureInfo = value ?? new CultureInfo("da-DK"); }
         }
 
+        /// <summary>
+        /// Gets a reference to the Dashboard configuration.
+        /// </summary>
+        public DashboardConfiguration Configuration { get; private set; }
+
         #endregion
 
         #region Constructors
 
-        private DashboardContext() { }
+        private DashboardContext() {
+            Configuration = DashboardConfiguration.Load(MapPath("~/Config/Skybrud.Dashboard.json"));
+        }
 
         #endregion
 
@@ -163,7 +173,7 @@ namespace Skybrud.Umbraco.Dashboard {
         }
 
         /// <summary>
-        /// Gets a site with the specified <code>siteId</code>, or <code>null</code> if a site couldn't be found.
+        /// Gets the site with the specified <code>siteId</code>, or <code>null</code> if the site couldn't be found.
         /// </summary>
         /// <param name="siteId">The ID of the site.</param>
         public IDashboardSite GetSiteById(int siteId) {
@@ -178,7 +188,7 @@ namespace Skybrud.Umbraco.Dashboard {
 
                 } catch (Exception ex) {
 
-                    LogHelper.Error<DashboardContext>("Plugin of type " + plugin.GetType() + " has failed for GetSite(" + siteId + ")", ex);
+                    LogHelper.Error<DashboardContext>("Plugin of type " + plugin.GetType() + " has failed for GetSiteById(" + siteId + ")", ex);
 
                 }
 
@@ -186,6 +196,70 @@ namespace Skybrud.Umbraco.Dashboard {
 
             return null;
 
+        }
+
+        /// <summary>
+        /// Gets the page with the specified <code>pageId</code>, or <code>null</code> if the page couldn't be found.
+        /// </summary>
+        /// <param name="pageId">The ID of the page.</param>
+        public IDashboardPage GetPageById(int pageId) {
+
+            foreach (IDashboardPlugin plugin in Plugins) {
+
+                try {
+
+                    IDashboardPage page = plugin.GetPageById(pageId);
+
+                    if (page != null) return page;
+
+                } catch (Exception ex) {
+
+                    LogHelper.Error<DashboardContext>("Plugin of type " + plugin.GetType() + " has failed for GetPageById()", ex);
+
+                }
+
+            }
+
+            return null;
+
+        }
+
+        /// <summary>
+        /// Runs a number of setup steps in order for the Dashboard to work properly.
+        /// </summary>
+        public object Setup() {
+            
+            List<object> result = new List<object>();
+
+            // Make sure we have a temporary directive for the Dashboard
+            string dashboardTempPath = MapPath(DashboardConstants.DashboardCachePath);
+            if (Directory.Exists(dashboardTempPath)) {
+                result.Add("Global cache directory already exists");
+            } else {
+                Directory.CreateDirectory(dashboardTempPath);
+                result.Add("Global cache directory successfully created");
+            }
+
+            // Make sure we have a temporary directive specific to Analytics
+            string analyticsTempPath = MapPath(DashboardConstants.AnalyticsCachePath);
+            if (Directory.Exists(analyticsTempPath)) {
+                result.Add("Analytics cache directory already exists");
+            } else {
+                Directory.CreateDirectory(analyticsTempPath);
+                result.Add("Analytics cache directory successfully created");
+            }
+
+            return result;
+
+        }
+
+        /// <summary>
+        /// Gets the absolute path based on the specified <code>virtualPath</code>.
+        /// </summary>
+        /// <param name="virtualPath">The virtual path.</param>
+        /// <returns>Returns the absolute path.</returns>
+        public string MapPath(string virtualPath) {
+            return HostingEnvironment.MapPath(virtualPath);
         }
 
         #endregion

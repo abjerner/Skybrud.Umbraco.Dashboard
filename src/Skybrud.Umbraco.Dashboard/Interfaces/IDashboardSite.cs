@@ -8,8 +8,10 @@ namespace Skybrud.Umbraco.Dashboard.Interfaces {
     /// </summary>
     public interface IDashboardSite {
 
+        #region Properties
+
         /// <summary>
-        /// Gets a reference to the underlying instance of <code>IPublishedContent</code>.
+        /// Gets a reference to the underlying instance of <see cref="IPublishedContent"/>.
         /// </summary>
         [JsonIgnore]
         IPublishedContent Content { get; }
@@ -31,6 +33,24 @@ namespace Skybrud.Umbraco.Dashboard.Interfaces {
         /// </summary>
         [JsonProperty("url")]
         string Url { get; }
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Gets an array of blocks for the site.
+        /// </summary>
+        /// <returns>Returns an array of <see cref="IDashboardBlock"/>.</returns>
+        IDashboardBlock[] GetBlocks();
+
+        /// <summary>
+        /// Gets an array of blocks for the page with the specified <code>pageId</code>.
+        /// </summary>
+        /// <returns>Returns an array of <see cref="IDashboardBlock"/>.</returns>
+        IDashboardBlock[] GetBlocksForPage(int pageId);
+
+        #endregion
 
     }
 

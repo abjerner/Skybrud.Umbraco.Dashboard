@@ -20,6 +20,10 @@ namespace Skybrud.Umbraco.Dashboard.Model.Analytics {
 
         public string ProfileId { get; set; }
 
+        public bool HasProfileData {
+            get { return !String.IsNullOrWhiteSpace(ProfileId); }
+        }
+
     }
 
 }

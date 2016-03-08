@@ -43,6 +43,7 @@
 @sprite: '/App_Plugins/Skybrud.Dashboard/Images/sprite.png?2';
 
 .block {
+    
     h3 {
         margin: 0 0 10px 0;
         color: #b3b3b3;
@@ -51,54 +52,11 @@
         font-weight: bold;
         line-height: 14px;
     }
-}
 
-.block.columns {
-    display: flex;
-    > div {
-        margin-left: 2%;
-        width: 32%;
-        box-sizing: border-box;
-        &:first-child {
-            margin-left: 0;
-        }
-    }
-}
-
-.block.border {
-    border: 1px solid #efefef;
-    border-radius: 4px;
-    padding: 15px;
-}
-
-.block.nuget {
-    ul { list-style: none; margin: 0; padding: 0; }
-    
-    .positive {
-        .change:after {
-            background: url(@sprite) -16px -63px no-repeat;
-        }
-    }
-
-    .negative {
-        .change:after {
-            background: url(@sprite) -32px -63px no-repeat;
-        }
-    }
-
-    .change {
-        position: relative;
-        padding: 0 18px 0 15px;
-    }
-    
-    .change:after {
-        display: block;
-        content: ' ';
-        width: 16px;
-        height: 16px;
-        position: absolute;
-        top: 10px;
-        right: -2px;
+    &.border {
+        border: 1px solid #efefef;
+        border-radius: 4px;
+        padding: 15px;
     }
 
 }
@@ -107,11 +65,8 @@
 
 
 
-
-
-
-
-.block.loading > div > div.loader {
+.block.loading > div.DashboardLoader,
+.block.loading > div > div.DashboardLoader {
     display: block;
 }
 
@@ -119,21 +74,21 @@
     margin: 0 0 10px 0;
 }
 
-.block ul {
+.block ul.list {
     margin: 0;
     padding: 0;
     list-style-type: none;
+    li {
+        border-top: 1px solid @borderColor;
+        line-height: 36px;
+        white-space: nowrap;
+        &:first-child {
+            border-top: 0;
+        }
+    }
 }
 
-.block li {
-    border-top: 1px solid @borderColor;
-    line-height: 36px;
-    white-space: nowrap;
-}
 
-.block ul li:first-child {
-    border-top: 0;
-}
 
 .dashboard > .blocks {
 
@@ -142,6 +97,8 @@
 }
 
 .block {
+
+    position: relative;
     
     margin-top: 20px;
 
@@ -202,7 +159,7 @@ tr.positive {
 
 
 
-.block.links li {
+.block.links > ul > li {
         position: relative;
         height: 36px;
 
@@ -390,7 +347,7 @@ tr.positive {
 .box.analytics {
 
     &.loading {
-    
+
         .tabs a:not(.active) {
             opacity: 0.55;
             cursor: default !important;
@@ -398,6 +355,7 @@ tr.positive {
 
         .graph {
             opacity: 0.55;
+
             * {
                 cursor: default !important;
             }
@@ -405,15 +363,15 @@ tr.positive {
 
         > .content {
             opacity: 0.55;
+
             * {
                 cursor: default !important;
             }
         }
 
-        .loader {
+        .DashboardLoader {
             display: block;
         }
-
     }
 
     &.haserror .error {
@@ -428,50 +386,59 @@ tr.positive {
         padding: 10px;
     }
 
-	.blocks {
-		margin: 10px;
-		min-height: 175px;
-	}
-	
-	.blocks > div {
-		float: left;
-		width: 32%;
-		min-height: 175px;
-	}
+    .blocks {
+        margin: 10px;
+        min-height: 175px;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        -webkit-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-right: -20px;
+    }
 
-	.blocks > div + div {
-		margin-top: 0;
-		margin-left: 2%;
-	}
+    .blocks > div {
+        margin-right: 30px;
+        min-height: 175px;
+        flex-grow: 1;
+        flex-basis: 400px;
+    }
 
-	.blocks:after {
-		content: " ";
-		visibility: hidden;
-		display: block;
-		height: 0;
-		clear: both;
-	}
+    /*.blocks > div + div {
+        margin-top: 0;
+        margin-left: 2%;
+    }*/
 
-	> .content {
-		min-height: 100px;
-	}
+    .blocks:after {
+        content: " ";
+        visibility: hidden;
+        display: block;
+        height: 0;
+        clear: both;
+    }
 
-	> .content > .empty {
-		padding: 25px;
-		color: #666;
-	}
+    > .content {
+        min-height: 100px;
+    }
+
+    > .content > .empty {
+        padding: 25px;
+        color: #666;
+    }
 
     .graph {
         margin: 10px 10px 30px 10px;
+
         ul {
             position: absolute;
             right: 20px;
             top: 150px;
             list-style-type: none;
+
             li {
                 border-top: 0;
                 line-height: 26px;
             }
+
             span {
                 display: inline-block;
                 border-radius: 50%;
@@ -481,7 +448,6 @@ tr.positive {
             }
         }
     }
-
 }
 
 .visits {
@@ -491,7 +457,7 @@ tr.positive {
         height: 36px;
         .text {
 
-
+            width: 100%;
             
           display: inline-block;
           padding: 2px 4px;
@@ -529,12 +495,12 @@ tr.positive {
             padding-right: 18px;
         }
         &.up { color: @positive; position: relative; }
-        &.up .change:after {
+        &.up td.change:last-child:after {
             .afterRight(-2px, 10px, 16px, 16px);
             background: url(@sprite) -16px -63px no-repeat;
         }
         &.down { color: @negative; }
-        &.down .change:after {
+        &.down td.change:last-child:after {
             .afterRight(-2px, 10px, 16px, 16px);
             background: url(@sprite) -32px -63px no-repeat;
         }
@@ -554,6 +520,9 @@ tr.positive {
             padding: 0;
             line-height: 36px;
         }
+        .text {
+            width: 100%;
+        }
         .label {
             width: 100%;
         }
@@ -569,6 +538,9 @@ tr.positive {
             white-space: nowrap;
             padding: 0 18px 0 15px;
             text-align: right;
+        }
+
+        td.change:last-child {
             &:after {
                 display: block;
                 content: ' ';
@@ -578,8 +550,8 @@ tr.positive {
                 top: 10px;
                 right: -2px;
             }
-            
         }
+
         tr.up {
             color: @positive;
             .change:after {
@@ -643,10 +615,30 @@ tr.positive {
 
 
 
+.block.columns {
+    display: flex;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -20px;
+    > div {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        flex-grow: 1;
+        flex-basis: 400px;
+        margin-right: 20px;
+        margin-left: 0 !important;
+        &.dummy {
+            margin: 0 !important;
+        }
+    }
+}
 
 
 
 
 
 
+@import "_dialog.less";
 @import "_loader.less";
