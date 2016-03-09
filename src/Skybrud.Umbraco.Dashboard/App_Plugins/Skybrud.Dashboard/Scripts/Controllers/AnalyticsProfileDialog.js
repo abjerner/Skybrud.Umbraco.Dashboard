@@ -18,11 +18,7 @@
     $scope.queryChanged = function () {
         if ($scope.query == query) return;
         query = $scope.query;
-        if ($scope.query) {
-            $scope.updateList();
-        } else {
-            $scope.users = [];
-        }
+        $scope.updateList();
     };
 
     $scope.select = function(user, account, webProperty, profile) {
