@@ -773,4 +773,26 @@ tr.positive {
   background: #2E8AEA;
   color: #fff;
 }
+.AnalyticsProfileSelection {
+  border: 1px solid #DDDDDD;
+}
+.AnalyticsProfileSelection > .header {
+  background: #F8F8F8;
+  border-bottom: 1px solid #DDDDDD;
+  padding: 10px;
+}
+.AnalyticsProfileSelection > .content {
+  padding: 10px;
+}
+.AnalyticsProfileSelection table {
+  margin-bottom: 5px;
+}
+.AnalyticsProfileSelection table th {
+  text-align: left;
+  width: 150px;
+}
+.AnalyticsProfileSelection table table tbody tr + tr th,
+.AnalyticsProfileSelection table table tbody tr + tr td {
+  padding-top: 2px;
+}
 /*# sourceMappingURL=Default.css.map */

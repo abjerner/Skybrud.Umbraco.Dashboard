@@ -1,15 +1,40 @@
-﻿<div ng-controller="Dashboard.AnalyticsProfileEditor.Controller">
-
-    <div ng-show="model.value.profile">
-        <strong>{{model.value.profile.name}}</strong>
-        <span>({{model.value.profile.id}})</span>
-        <a href="#" prevent-default="" ng-click="reset();" style="color: #2E8AEA;">Nulstil</a>
-        <a href="#" prevent-default="" ng-click="open();" style="color: #2E8AEA;">Vælg...</a>
+﻿<div ng-controller="Dashboard.AnalyticsProfileEditor.Controller" class="AnalyticsProfileSelection">
+    <div class="header">
+        Google Analytics-profil
     </div>
-    <div ng-show="!model.value.profile">
-        <a href="#" prevent-default="" ng-click="open();" style="color: #2E8AEA;">Vælg...</a>
+    <div class="content">
+        <table ng-show="model.value.profile">
+            <tbody>
+                <tr>
+                    <th>ID</th>
+                    <td>{{model.value.profile.id}}</td>
+                </tr>
+                <tr>
+                    <th>Navn</th>
+                    <td>{{model.value.profile.name}}</td>
+                </tr>
+                <tr>
+                    <th>URL</th>
+                    <td>
+                        <a href="{{model.value.profile.websiteUrl}}" target="_blank">
+                            {{model.value.profile.websiteUrl}}
+                            <i ng-class="value.icon" class="icon-out"></i>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Konto</th>
+                    <td>{{model.value.account.name}}</td>
+                </tr>
+                <tr>
+                    <th>Web Property</th>
+                    <td>{{model.value.webProperty.name}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="btn-group">
+            <a class="btn btn-default" prevent-default="" ng-click="reset();" ng-show="model.value.profile">Nulstil</a>
+            <a class="btn btn-default" href="#" prevent-default="" ng-click="open();">Vælg...</a>
+        </div>
     </div>
-
-    <pre>{{model.value | json}}</pre>
-
 </div>
