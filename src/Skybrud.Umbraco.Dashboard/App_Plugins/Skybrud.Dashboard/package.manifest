@@ -42,6 +42,8 @@
         "~/App_Plugins/Skybrud.Dashboard/Scripts/Directives/Pie.js",
         "~/App_Plugins/Skybrud.Dashboard/Scripts/Directives/Chart.js",
         "~/App_Plugins/Skybrud.Dashboard/Scripts/Controllers/Analytics.js",
+        "~/App_Plugins/Skybrud.Dashboard/Scripts/Controllers/AnalyticsProfileDialog.js",
+        "~/App_Plugins/Skybrud.Dashboard/Scripts/Controllers/AnalyticsProfileEditor.js",
         "~/App_Plugins/Skybrud.Dashboard/Scripts/Controllers/Columns.js",
         "~/App_Plugins/Skybrud.Dashboard/Scripts/Controllers/Sites.js",
         "~/App_Plugins/Skybrud.Dashboard/Scripts/Controllers/SiteStatistics.js",

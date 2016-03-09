@@ -8,10 +8,10 @@
                 show: true,
                 animation: false,
                 callback: function (value) {
-                    if (options && options.submit) options.submit(value);
+                    if (options && options.callback) options.callback(value);
                 },
                 cancel: function () {
-                    if (options && options.cancel) cancel.submit();
+                    if (options && options.cancel) options.cancel();
                 }
             });
             d.element[0].style.width = '1000px';

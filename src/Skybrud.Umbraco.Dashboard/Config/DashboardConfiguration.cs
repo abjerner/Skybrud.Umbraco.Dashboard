@@ -1,5 +1,7 @@
 ﻿using System.IO;
 using Newtonsoft.Json.Linq;
+using Skybrud.Social.Json.Extensions.JObject;
+using Skybrud.Umbraco.Dashboard.Config.Analytics;
 
 namespace Skybrud.Umbraco.Dashboard.Config {
     
@@ -15,12 +17,18 @@ namespace Skybrud.Umbraco.Dashboard.Config {
         /// </summary>
         public JObject JObject { get; private set; }
 
+        /// <summary>
+        /// Gets a reference to the configuration element for the Analytics implementation.
+        /// </summary>
+        public AnalyticsConfiguration Analytics { get; private set; }
+
         #endregion
 
         #region Constructors
 
         private DashboardConfiguration(JObject obj) {
             JObject = obj;
+            Analytics = obj.GetObject("analytics", AnalyticsConfiguration.Parse);
         }
 
         #endregion

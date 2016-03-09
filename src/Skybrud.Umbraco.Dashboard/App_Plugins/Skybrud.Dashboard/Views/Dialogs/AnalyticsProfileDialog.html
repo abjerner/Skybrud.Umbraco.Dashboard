@@ -1,0 +1,50 @@
+﻿<div ng-controller="Dashboard.AnalyticsProfileDialog.Controller">
+    <div class="dashboard-dialog-header">
+        <div class="dashboard-dialog-close" ng-click="close();"></div>
+        <div class="dashboard-dialog-title">Vælg site</div>
+    </div>
+    <div class="dashboard-dialog-content analytics-users" ng-class="{loading: loading}">
+        <div class="analytics-search">
+            <input type="text" placeholder="Søg på ID, navn eller domæne" ng-model="query" ng-change="queryChanged()" />
+        </div>
+        <div>
+            <div ng-repeat="user in users">
+                <h3>
+                    <span>Bruger:</span>
+                    <strong>{{user.name || user.email}}</strong>
+                </h3>
+                <div ng-repeat="account in user.accounts">
+                    <h4>
+                        <span>Konto:</span>
+                        <strong>{{account.name}}</strong>
+                    </h4>
+                    <table class="table list">
+                        <thead>
+                            <tr>
+                                <th>Web Property</th>
+                                <th>Profil</th>
+                                <th>URL</th>
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="webProperty in account.webProperties">
+                            <tr ng-repeat="profile in webProperty.profiles" ng-click="select(user, account, webProperty, profile)">
+                                <td>
+                                    {{webProperty.name}}<br />
+                                    <span>ID: {{webProperty.id}}</span>
+                                </td>
+                                <td>
+                                    <strong>{{profile.name}}</strong><br />
+                                    <span>ID: {{profile.id}}</span>
+                                </td>
+                                <td>
+                                    {{profile.websiteUrl}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <dashboard-loader />
+    </div>
+</div>

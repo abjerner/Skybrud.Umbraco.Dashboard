@@ -642,3 +642,92 @@ tr.positive {
 
 @import "_dialog.less";
 @import "_loader.less";
+
+
+
+
+
+.analytics-search {
+    display: flex;
+    input {
+        width: 100%;
+    }
+}
+
+.analytics-users {
+
+    table.table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid #d9d9d9;
+    }
+
+    table.table > thead {
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        background-color: #f8f8f8;
+    }
+
+    table.table > thead.header {
+        background: none;
+    }
+
+    table.table > thead.header td {
+        border-left: 1px solid white !important;
+        border-right: 1px solid white !important;
+        padding: 20px 0;
+    }
+
+    table.table > thead.header td h2 {
+        margin: 0;
+    }
+
+    table.table > thead.header:first-child td {
+        border-top: 1px solid white !important;
+        padding-top: 0;
+    }
+
+    table.table > * > tr > td,
+    table.table > * > tr > th {
+        padding: 8px;
+        line-height: 20px;
+        text-align: left;
+        vertical-align: top;
+        border-top: 1px solid #dbdbdb;
+    }
+
+    table.table tr.delayed td {
+        color: red;
+    }
+
+    table.table tbody+tbody {
+        border-top: 0;
+    }
+
+    th.nw, td.nw {
+        white-space: nowrap;
+    }
+
+    th.fw, td.fw {
+        width: 100%;
+    }
+
+    table.table span {
+        font-size: 11px;
+    }
+
+    &.loading .DashboardLoader {
+        display: block;
+        pointer-events: none;
+    }
+
+    table.table tbody tr {
+        cursor: pointer;
+        &:hover, &:active {
+            background: #2E8AEA;
+            color: #fff;
+        }
+    }
+
+}

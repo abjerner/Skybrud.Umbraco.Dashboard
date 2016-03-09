@@ -195,6 +195,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\Analytics\AnalyticsUserConfiguration.cs" />
+    <Compile Include="Config\Analytics\AnalyticsClientConfiguration.cs" />
     <Compile Include="Config\Analytics\AnalyticsConfiguration.cs" />
     <Compile Include="Config\Analytics\AnalyticsObject.cs" />
     <Compile Include="Config\DashboardConfiguration.cs" />
@@ -218,6 +220,10 @@
     <Compile Include="Interfaces\IDashboardSite.cs" />
     <Compile Include="Model\Analytics\Blocks\AnalyticsBlock.cs" />
     <Compile Include="Model\Analytics\Blocks\AnalyticsChildBlock.cs" />
+    <Compile Include="Model\Analytics\Cached\AnalyticsCachedAccount.cs" />
+    <Compile Include="Model\Analytics\Cached\AnalyticsCachedProfile.cs" />
+    <Compile Include="Model\Analytics\Cached\AnalyticsCachedUser.cs" />
+    <Compile Include="Model\Analytics\Cached\AnalyticsCachedWebProperty.cs" />
     <Compile Include="Model\Blocks\StatusBox\StatusBoxItem.cs" />
     <Compile Include="Model\LastEdited\LastEditedItem.cs" />
     <Compile Include="Model\Properties\DashboardSitesProperty.cs" />
