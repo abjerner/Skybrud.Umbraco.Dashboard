@@ -25,8 +25,14 @@
 
         var selection = {
             user: user.id,
-            account: account.id,
-            webProperty: webProperty.id,
+            account: {
+                id: account.id,
+                name: account.name
+            },
+            webProperty: {
+                id: webProperty.id,
+                name: webProperty.name
+            },
             profile: profile
         };
 
