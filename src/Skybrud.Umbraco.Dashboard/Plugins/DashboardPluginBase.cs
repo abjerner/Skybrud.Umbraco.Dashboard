@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Skybrud.Umbraco.Dashboard.Interfaces;
-using Skybrud.Umbraco.Dashboard.Model;
+using Skybrud.Umbraco.Dashboard.Models;
 using Umbraco.Core.Models.Membership;
 using Umbraco.Web;
 

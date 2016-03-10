@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using Skybrud.Umbraco.Dashboard.Model;
-using Skybrud.Umbraco.Dashboard.Model.Properties;
+using Skybrud.Umbraco.Dashboard.Models;
+using Skybrud.Umbraco.Dashboard.Models.Properties;
 using Umbraco.Web.Editors;
 using Umbraco.Web.Models.ContentEditing;
 

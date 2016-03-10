@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Skybrud.Umbraco.Dashboard.Model;
+using Skybrud.Umbraco.Dashboard.Models;
 
 namespace Skybrud.Umbraco.Dashboard.Interfaces {
 

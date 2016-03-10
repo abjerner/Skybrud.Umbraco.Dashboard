@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Skybrud.Umbraco.Dashboard.Model.Analytics;
+using Skybrud.Umbraco.Dashboard.Models.Analytics;
 
 namespace Skybrud.Umbraco.Dashboard.Interfaces {
     
