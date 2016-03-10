@@ -24,7 +24,9 @@
     $scope.select = function(user, account, webProperty, profile) {
 
         var selection = {
-            user: user.id,
+            user: {
+                id: user.id
+            },
             account: {
                 id: account.id,
                 name: account.name

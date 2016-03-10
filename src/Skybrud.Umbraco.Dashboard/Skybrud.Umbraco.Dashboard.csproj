@@ -195,6 +195,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Analytics\Selection\DashboardAnalyticsSiteSelection.cs" />
+    <Compile Include="Models\Analytics\Selection\DashboardAnalyticsSiteSelectionAccount.cs" />
+    <Compile Include="Models\Analytics\Selection\DashboardAnalyticsSiteSelectionProfile.cs" />
+    <Compile Include="Models\Analytics\Selection\DashboardAnalyticsSiteSelectionUser.cs" />
+    <Compile Include="Models\Analytics\Selection\DashboardAnalyticsSiteSelectionWebProperty.cs" />
+    <Compile Include="Models\Json\DashboardJsonObject.cs" />
+    <Compile Include="PropertyEditors\DashboardPropertyValueConverter.cs" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Scripts\Controllers\AnalyticsProfileDialog.js" />
     <Compile Include="Config\Analytics\AnalyticsUserConfiguration.cs" />
     <Compile Include="Config\Analytics\AnalyticsClientConfiguration.cs" />
@@ -232,7 +239,7 @@
     <Compile Include="Models\Analytics\Blocks\LineChartBlock.cs" />
     <Compile Include="Models\Analytics\Blocks\PopularBlock.cs" />
     <Compile Include="Models\Analytics\Blocks\VisitsBlock.cs" />
-    <Compile Include="Models\Analytics\DashboardAnalyticsSettings.cs" />
+    <Compile Include="Models\Analytics\Settings\DashboardAnalyticsSettings.cs" />
     <Compile Include="Models\Analytics\DataQuery.cs" />
     <Compile Include="Models\Analytics\DataQueryType.cs" />
     <Compile Include="Models\Analytics\DataResponse.cs" />

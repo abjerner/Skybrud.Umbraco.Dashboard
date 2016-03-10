@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Skybrud.Umbraco.Dashboard.Models.Analytics {
+namespace Skybrud.Umbraco.Dashboard.Models.Analytics.Settings {
     
     public class DashboardAnalyticsSettings {
         
@@ -25,5 +25,4 @@ namespace Skybrud.Umbraco.Dashboard.Models.Analytics {
         }
 
     }
-
 }
