@@ -93,7 +93,7 @@ namespace Skybrud.Umbraco.Dashboard.Models.Blocks.StatusBox {
         public IDashboardSite Site { get; set; }
 
         [JsonProperty("page")]
-        public DashboardPage Page { get; set; }
+        public IDashboardPage Page { get; set; }
 
         [JsonProperty("cached")]
         public bool IsCached { get; set; }
