@@ -269,10 +269,10 @@ namespace Skybrud.Umbraco.Dashboard.Models.Analytics {
                 OldValue = new { raw = valueOld, text = Context.Format(valueOld) },
                 Change = new {
                     raw = change,
-                    text = Context.Format(change),
+                    text = FormatChange(change),
                     percent = new {
-                        raw = Double.IsInfinity(percent) ? null : (object)percent,
-                        text = Double.IsInfinity(percent) ? null : Context.Format(percent)
+                        raw = Double.IsInfinity(percent) ? null : (object) percent,
+                        text = Double.IsInfinity(percent) ? null : FormatChange(percent)
                     }
                 }
             };
@@ -330,10 +330,10 @@ namespace Skybrud.Umbraco.Dashboard.Models.Analytics {
                 Value = new { raw = valueNew, text = String.Join(" og ", text2) },
                 Change = new {
                     raw = change,
-                    text = String.Join(" og ", text3),
+                    text = (ts3.Ticks > 0 ? "+" : "") + String.Join(" og ", text3),
                     percent = new {
                         raw = Double.IsInfinity(percent) ? null : (object) percent,
-                        text = Double.IsInfinity(percent) ? null : Context.Format(percent)
+                        text = Double.IsInfinity(percent) ? null : FormatChange(percent)
                     }
                 },
             };
@@ -358,10 +358,10 @@ namespace Skybrud.Umbraco.Dashboard.Models.Analytics {
                 OldValue = new { raw = valueOld, text = Context.Format(valueOld) },
                 Change = new {
                     raw = change,
-                    text = Context.Format(change),
+                    text = FormatChange(change),
                     percent = new {
-                        raw = Double.IsInfinity(percent) ? null : (object)percent,
-                        text = Double.IsInfinity(percent) ? null : Context.Format(percent)
+                        raw = Double.IsInfinity(percent) ? null : (object) percent,
+                        text = Double.IsInfinity(percent) ? null : FormatChange(percent)
                     }
                 },
             };
@@ -381,7 +381,7 @@ namespace Skybrud.Umbraco.Dashboard.Models.Analytics {
                 Alias = key,
                 Label = Context.Translate(field),
                 Value = new { raw = valueNew, text = Context.Format(valueNew) },
-                Change = new { raw = change, text = Context.Format(change) },
+                Change = new { raw = change, text = FormatChange(change) },
             };
 
         }
@@ -399,9 +399,29 @@ namespace Skybrud.Umbraco.Dashboard.Models.Analytics {
                 Alias = key,
                 Label = Context.Translate(field),
                 Value = new { raw = valueNew, text = Context.Format(valueNew) },
-                Change = new { raw = change, text = Context.Format(change) },
+                Change = new { raw = change, text = FormatChange(change) },
             };
 
+        }
+
+        /// <summary>
+        /// Formats the specified <code>change</code>. If <code>change</code> is positive (but not zero), a
+        /// <code>+</code> will be prepended to the formatted string.
+        /// </summary>
+        /// <param name="change">The changed value to be formatted.</param>
+        /// <returns>Returns the formatted string.</returns>
+        public string FormatChange(double change) {
+            return (change > 0 ? "+" : "") + Context.Format(change);
+        }
+
+        /// <summary>
+        /// Formats the specified <code>change</code>. If <code>change</code> is positive (but not zero), a
+        /// <code>+</code> will be prepended to the formatted string.
+        /// </summary>
+        /// <param name="change">The changed value to be formatted.</param>
+        /// <returns>Returns the formatted string.</returns>
+        public string FormatChange(int change) {
+            return (change > 0 ? "+" : "") + Context.Format(change);
         }
 
         #endregion
