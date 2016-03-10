@@ -22,11 +22,18 @@ namespace Skybrud.Umbraco.Dashboard.Config {
         /// </summary>
         public AnalyticsConfiguration Analytics { get; private set; }
 
+        /// <summary>
+        /// Gets whether the root configuration element contains an element for the Analytics implementation.
+        /// </summary>
+        public bool HasAnalytics {
+            get { return Analytics != null; }
+        }
+
         #endregion
 
         #region Constructors
 
-        private DashboardConfiguration(JObject obj) {
+        internal DashboardConfiguration(JObject obj) {
             JObject = obj;
             Analytics = obj.GetObject("analytics", AnalyticsConfiguration.Parse);
         }

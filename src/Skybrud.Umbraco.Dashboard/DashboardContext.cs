@@ -5,6 +5,7 @@ using System.IO;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
+using Newtonsoft.Json.Linq;
 using Skybrud.Social.Google.Analytics.Interfaces;
 using Skybrud.Umbraco.Dashboard.Config;
 using Skybrud.Umbraco.Dashboard.Interfaces;
@@ -81,7 +82,26 @@ namespace Skybrud.Umbraco.Dashboard {
         #region Constructors
 
         private DashboardContext() {
-            Configuration = DashboardConfiguration.Load(MapPath("~/Config/Skybrud.Dashboard.json"));
+
+            try {
+
+                // Calculate the absolute path to the configuration file
+                string path = MapPath("~/Config/Skybrud.Dashboard.config");
+
+                // Load the configuration
+                Configuration = DashboardConfiguration.Load(path);
+
+            } catch (Exception ex) {
+
+                // Save the exception to the log
+                LogHelper.Error<DashboardContext>("Unable to load configuration file for the Dashboard: " + ex.Message, ex);
+
+                // Initialize an empty configuration (so we have a fallback)
+                Configuration = new DashboardConfiguration(new JObject());
+
+            }
+
+
         }
 
         #endregion
