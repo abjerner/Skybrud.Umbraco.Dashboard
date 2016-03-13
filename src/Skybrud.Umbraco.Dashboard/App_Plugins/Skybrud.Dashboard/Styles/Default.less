@@ -55,7 +55,7 @@
 
     &.border {
         border: 1px solid #efefef;
-        border-radius: 4px;
+        /*border-radius: 4px;*/
         padding: 15px;
     }
 
@@ -246,9 +246,9 @@ tr.positive {
 .box {
     position: relative;
     border: 1px solid #ddd;
-    -moz-border-radius: 5px;
+    /*-moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-    border-radius: 5px;
+    border-radius: 5px;*/
     padding-top: 72px;
 }
 
@@ -257,10 +257,10 @@ tr.positive {
     top: 0;
     background: #f8f8f8;
     border-bottom: 1px solid #ddd;
-    -webkit-border-top-left-radius: 5px;
+    /*-webkit-border-top-left-radius: 5px;
     border-top-left-radius: 5px;
     -webkit-border-top-right-radius: 5px;
-    border-top-right-radius: 5px;
+    border-top-right-radius: 5px;*/
     width: 100%;
     height: 71px;
 }
@@ -292,11 +292,6 @@ tr.positive {
   font-size: 14px;
 }
 
-.box .header .actions a {
-  background: #8d7758;
-  padding: 0 20px;
-}
-
 .box .header .actions a:hover {
   background: #000;
 }
@@ -315,14 +310,17 @@ tr.positive {
     border-top: 1px solid transparent;
     border-left: 1px solid transparent;
     border-right: 1px solid transparent;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    /*border-top-left-radius: 5px;
+    border-top-right-radius: 5px;*/
     height: 31px;
     line-height: 30px;
     padding: 0 10px;
 }
 
-.box .header .tabs a:hover,
+.box .header .tabs a:hover {
+  color: #000;
+}
+
 .box .header .tabs a.active {
   border: 1px solid #ddd;
   border-bottom: 1px;
