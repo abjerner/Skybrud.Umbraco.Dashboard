@@ -6,7 +6,7 @@
 
     <div style=" margin: 0; font-size: 26px; line-height: 40px; font-weight: normal;" ng-show="property.sites.length > 1">
         Statistik for
-        <select ng-options="site.name for site in property.sites track by site.id" ng-model="site" ng-change="siteChanged()" style="height: 40px; margin-left: 5px; padding: 0 5px;"></select>
+        <select ng-options="site.name for site in property.sites track by site.id" ng-model="site" ng-change="siteChanged()" no-dirty-check style="height: 40px; margin-left: 5px; padding: 0 5px;"></select>
     </div>
 
     <div style=" margin: 0; font-size: 26px; line-height: 40px; font-weight: normal;" ng-show="property.sites.length == 1">
