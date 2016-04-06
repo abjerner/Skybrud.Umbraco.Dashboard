@@ -18,7 +18,7 @@ namespace Skybrud.Umbraco.Dashboard.Indexing {
             // Make the path searchable
             string path;
             e.Fields.TryGetValue("path", out path);
-            e.Fields.Add("sky_path", (path + "").Replace(',', ' '));
+            e.Fields["sky_path"] = (path + "").Replace(',', ' ');
 
         }
 
