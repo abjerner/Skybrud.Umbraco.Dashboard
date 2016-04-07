@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+
+<language alias="da" intName="Danish" localName="dansk" lcid="6" culture="da-DK">
+  <area alias="dashboard">
+    <key alias="statistics">Statistik</key>
+    <key alias="statisticsFor">Statistik for</key>
+  </area>
+  <area alias="dashboard">
+    <key alias="lastEditedTitle">Senest ændrede sider</key>
+    <key alias="lastEditedToday">I dag</key>
+    <key alias="lastEditedYesterday">I går</key>
+  </area>
+  <area alias="dashboard">
+    <key alias="analyticsTitle">Statistik</key>
+    <key alias="analyticsGoTo">Gå til Google Analytics</key>
+    <key alias="analyticsYesterday">I går</key>
+    <key alias="analyticsLastWeek">Sidste uge</key>
+    <key alias="analyticsLastMonth">Sidste måned</key>
+    <key alias="analyticsLastYear">Sidste år</key>
+    <key alias="analyticsVisitsTitle">Besøg</key>
+    <key alias="analyticsPopularTitle">Mest besøgte sider</key>
+    <key alias="analyticsDevicesTitle">Enheder</key>
+    <key alias="analyticsDevicesDesktop">Desktop</key>
+    <key alias="analyticsDevicesMobile">Mobil</key>
+    <key alias="analyticsDevicesTablet">Tablet</key>
+    <key alias="ga:visits">Besøg</key>
+    <key alias="ga:pageviews">Sidevisninger</key>
+    <key alias="ga:newVisits">Nye besøgende</key>
+    <key alias="ga:avgTimeOnSite">Gns. tid pr. besøg</key>
+  </area>
+  <area alias="dashboardSiteimprove">
+    <key alias="statusTitle">Status</key>
+    <key alias="statusXDeadLink">Ét dødt link</key>
+    <key alias="statusXDeadLinks">{0} døde links</key>
+    <key alias="statusSpellingMisspelling">Én stavefejl</key>
+    <key alias="statusSpellingMisspellings">{0} stavefejl</key>
+    <key alias="statusSpellingPotentialMisspelling">Én mulige stavefejl</key>
+    <key alias="statusSpellingPotentialMisspellings">{0} mulige stavefejl</key>
+    <key alias="statusSpellingAccessibilityIssue">Ét {0}-tilgængelighedsproblem</key>
+    <key alias="statusSpellingAccessibilityIssues">{0} {1}-tilgængelighedsproblemer</key>
+  </area>
+</language>

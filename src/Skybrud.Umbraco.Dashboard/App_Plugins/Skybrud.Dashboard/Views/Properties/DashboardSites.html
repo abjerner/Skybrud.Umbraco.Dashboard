@@ -5,15 +5,15 @@
     </div>
 
     <div style=" margin: 0; font-size: 26px; line-height: 40px; font-weight: normal;" ng-show="property.sites.length > 1">
-        Statistik for
+        <localize key="dashboard_statisticsFor">Statistics for</localize>
         <select ng-options="site.name for site in property.sites track by site.id" ng-model="site" ng-change="siteChanged()" no-dirty-check style="height: 40px; margin-left: 5px; padding: 0 5px;"></select>
     </div>
 
     <div style=" margin: 0; font-size: 26px; line-height: 40px; font-weight: normal;" ng-show="property.sites.length == 1">
-        Statistik for
+        <localize key="dashboard_statisticsFor">Statistics for</localize>
         <strong>{{property.sites[0].name}}</strong>
     </div>
-    
+
     <div ng-show="site.blocks.length == 0" class="alert alert-info" style="margin-top: 10px;">
         <strong>Ingen statistik</strong><br />
         Der er ingen tilgængelig statistik for dette site.

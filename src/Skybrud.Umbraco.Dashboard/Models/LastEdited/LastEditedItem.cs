@@ -57,8 +57,8 @@ namespace Skybrud.Umbraco.Dashboard.Models.LastEdited {
         [JsonProperty("updated")]
         public string Updated {
             get {
-                if (UpdateDate >= DateTime.Today) return DashboardHelpers.Translate("today");
-                if (UpdateDate >= DateTime.Today.AddDays(-1)) return DashboardHelpers.Translate("yesterday");
+                if (UpdateDate >= DateTime.Today) return DashboardHelpers.Translate("dashboard/lastEditedToday");
+                if (UpdateDate >= DateTime.Today.AddDays(-1)) return DashboardHelpers.Translate("dashboard/lastEditedYesterday");
                 return UpdateDate.ToString("dd.MM.yy");
             }
         }

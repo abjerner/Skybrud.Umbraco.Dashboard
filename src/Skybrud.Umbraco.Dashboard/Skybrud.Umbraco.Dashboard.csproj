@@ -201,7 +201,10 @@
     <Compile Include="Models\Analytics\Selection\DashboardAnalyticsSiteSelectionUser.cs" />
     <Compile Include="Models\Analytics\Selection\DashboardAnalyticsSiteSelectionWebProperty.cs" />
     <Compile Include="Models\Json\DashboardJsonObject.cs" />
+    <Compile Include="Models\Properties\DashboardErrorProperty.cs" />
     <Compile Include="PropertyEditors\DashboardPropertyValueConverter.cs" />
+    <Content Include="App_Plugins\Skybrud.Dashboard\lang\en-GB.xml" />
+    <Content Include="App_Plugins\Skybrud.Dashboard\lang\da-DK.xml" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Scripts\Controllers\AnalyticsProfileDialog.js" />
     <Compile Include="Config\Analytics\AnalyticsUserConfiguration.cs" />
     <Compile Include="Config\Analytics\AnalyticsClientConfiguration.cs" />
@@ -278,6 +281,7 @@
     <Content Include="App_Plugins\Skybrud.Dashboard\Views\Blocks\Chart.html" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Views\Blocks\Columns.html" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Views\Blocks\Dummy.html" />
+    <Content Include="App_Plugins\Skybrud.Dashboard\Views\Blocks\Error.html" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Views\Blocks\LastEdited.html" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Views\Dialogs\AnalyticsProfileDialog.html" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Views\Properties\DashboardSites.html" />
@@ -290,7 +294,8 @@
     </Content>
     <Content Include="App_Plugins\Skybrud.Dashboard\Styles\_loader.less" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Styles\Default.less" />
-    <Content Include="App_Plugins\Skybrud.Dashboard\Translations.json" />
+    <None Include="App_Plugins\Skybrud.Dashboard\Translations.json__" />
+    <Content Include="App_Plugins\Skybrud.Dashboard\Views\Properties\Error.html" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Views\PropertyEditors\AnalyticsProfile.html" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Views\PropertyEditors\DashboardPageStatistics.html" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Views\PropertyEditors\DashboardSiteStatistics.html" />

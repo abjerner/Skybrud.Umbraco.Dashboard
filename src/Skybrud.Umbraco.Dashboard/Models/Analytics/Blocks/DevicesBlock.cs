@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
+using Skybrud.Social;
 using Skybrud.Social.Google.Analytics.Objects;
 using Skybrud.Social.Google.Analytics.Responses;
 using Skybrud.Umbraco.Dashboard.Exceptions;
@@ -17,7 +18,17 @@ namespace Skybrud.Umbraco.Dashboard.Models.Analytics.Blocks {
         public object[] Items { get; set; }
             
         public DevicesBlock() : base("AnalyticsDevices") {
-            Title = DashboardContext.Current.Translate("analytics_title_devices");
+            Title = DashboardContext.Current.Translate("dashboard/analyticsDevicesTitle");
+        }
+
+        private static string FirstCharToUpper(string str) {
+            // TODO: Method will be available in Skybrud.Social.Core
+            return String.IsNullOrEmpty(str) ? "" : String.Concat(str.Substring(0, 1).ToUpper(), str.Substring(1));
+        }
+
+        private static string UnderscoreToUpperCamelCase(string str) {
+            // TODO: Method will be available in Skybrud.Social.Core
+            return String.IsNullOrWhiteSpace(str) ? str : String.Join("", from piece in str.Split('_') select FirstCharToUpper(piece));
         }
 
         public static DevicesBlock GetBlock(DataQuery query) {
@@ -80,8 +91,8 @@ namespace Skybrud.Umbraco.Dashboard.Models.Analytics.Blocks {
                 string category = row.GetString(AnalyticsDimension.DeviceCategory);
 
                 items.Add(new {
-                    category = category,
-                    text = query.Context.Translate("device_" + category),
+                    category,
+                    text = query.Context.Translate("dashboard/analyticsDevices" + FirstCharToUpper(category)),
                     visits = new {
                         raw = visits,
                         text = query.Context.Format(visits),

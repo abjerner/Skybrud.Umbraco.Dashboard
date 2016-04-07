@@ -24,7 +24,7 @@ namespace Skybrud.Umbraco.Dashboard.Models.Analytics.Blocks {
 
         [JsonProperty("title")]
         public string Title {
-            get { return Dashboard.Translate("analytics_title"); }
+            get { return Dashboard.Translate("dashboard/analyticsTitle"); }
         }
 
         /// <summary>
@@ -39,10 +39,10 @@ namespace Skybrud.Umbraco.Dashboard.Models.Analytics.Blocks {
         public object Periods {
             get {
                 return new[] {
-                    new { alias = "yesterday", text = Dashboard.Translate("analytics_yesterday")},
-                    new { alias = "lastweek", text = Dashboard.Translate("analytics_lastweek")},
-                    new { alias = "lastmonth", text = Dashboard.Translate("analytics_lastmonth")},
-                    new { alias = "lastyear", text = Dashboard.Translate("analytics_lastyear")},
+                    new { alias = "yesterday", text = Dashboard.Translate("dashboard/analyticsYesterday")},
+                    new { alias = "lastweek", text = Dashboard.Translate("dashboard/analyticsLastWeek")},
+                    new { alias = "lastmonth", text = Dashboard.Translate("dashboard/analyticsLastMonth")},
+                    new { alias = "lastyear", text = Dashboard.Translate("dashboard/analyticsLastYear")},
                 };
             }
         }
@@ -52,7 +52,7 @@ namespace Skybrud.Umbraco.Dashboard.Models.Analytics.Blocks {
             get {
                 return new[] {
                     new {
-                        text = Dashboard.Translate("analytics_go_to"),
+                        text = Dashboard.Translate("dashboard/analyticsGoTo"),
                         url = "https://www.google.com/analytics/web/",
                         target = "_blank",
                         classes = "next"

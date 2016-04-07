@@ -212,6 +212,8 @@ namespace Skybrud.Umbraco.Dashboard.Controllers {
         [HttpGet]
         public object GetLastEditedData(int siteId, int max = 5) {
 
+            DashboardHelpers.EnsureCurrentUserCulture();
+
             try {
 
                 // Look for the site with the specified ID

@@ -19,7 +19,7 @@ namespace Skybrud.Umbraco.Dashboard.Models.Analytics.Blocks {
         public object[] Items { get; set; }
             
         public PopularBlock() : base("AnalyticsPopular") {
-            Title = DashboardContext.Current.Translate("analytics_title_popular");
+            Title = DashboardContext.Current.Translate("dashboard/analyticsPopularTitle");
         }
 
         public static PopularBlock GetBlock(DataQuery query, int max) {

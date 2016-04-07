@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Web;
@@ -7,7 +8,9 @@ using Newtonsoft.Json.Linq;
 using Skybrud.Social.Google.Analytics.Interfaces;
 using Skybrud.Umbraco.Dashboard.Extensions.JObject;
 using Skybrud.Umbraco.Dashboard.Interfaces;
+using Umbraco.Core;
 using Umbraco.Core.Models.Membership;
+using Umbraco.Core.Services;
 using Umbraco.Web;
 
 namespace Skybrud.Umbraco.Dashboard {
@@ -39,7 +42,7 @@ namespace Skybrud.Umbraco.Dashboard {
         /// </summary>
         /// <param name="field">The field.</param>
         public static string Translate(IAnalyticsField field) {
-            return DashboardTranslations.Instance.Translate(DashboardContext.Current.Culture, field.Name);
+            return Translate(DashboardContext.Current.Culture, "dashboard/" + field.Name);
         }
 
         /// <summary>
@@ -48,7 +51,7 @@ namespace Skybrud.Umbraco.Dashboard {
         /// <param name="culture">The culture to be used for the translation.</param>
         /// <param name="field">The field.</param>
         public static string Translate(CultureInfo culture, IAnalyticsField field) {
-            return DashboardTranslations.Instance.Translate(culture, field.Name);
+            return Translate(culture, "dashboard/" + field.Name);
         }
 
         /// <summary>
@@ -56,8 +59,8 @@ namespace Skybrud.Umbraco.Dashboard {
         /// </summary>
         /// <param name="key">The key of the phrase.</param>
         /// <param name="args">The arguments to be inserted into the phrase.</param>
-        public static string Translate(string key, params string[] args) {
-            return DashboardTranslations.Instance.Translate(DashboardContext.Current.Culture, key, args);
+        public static string Translate(string key, params object[] args) {
+            return Translate(DashboardContext.Current.Culture, key, args);
         }
 
         /// <summary>
@@ -66,8 +69,10 @@ namespace Skybrud.Umbraco.Dashboard {
         /// <param name="culture">The culture to be used for the translation.</param>
         /// <param name="key">The key of the phrase.</param>
         /// <param name="args">The arguments to be inserted into the phrase.</param>
-        public static string Translate(CultureInfo culture, string key, params string[] args) {
-            return DashboardTranslations.Instance.Translate(culture, key, args);
+        public static string Translate(CultureInfo culture, string key, params object[] args) {
+            ILocalizedTextService text = ApplicationContext.Current.Services.TextService;
+            if (args == null || args.Length == 0) return text.Localize(key, culture);
+            return String.Format(culture, text.Localize(key, culture), args);
         }
 
         /// <summary>

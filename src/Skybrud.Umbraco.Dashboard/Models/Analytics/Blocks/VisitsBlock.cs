@@ -14,7 +14,7 @@ namespace Skybrud.Umbraco.Dashboard.Models.Analytics.Blocks {
         public object[] Items { get; set; }
             
         public VisitsBlock() : base("AnalyticsVisits") {
-            Title = DashboardContext.Current.Translate("analytics_title_visits");
+            Title = DashboardContext.Current.Translate("dashboard/analyticsVisitsTitle");
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Skybrud.Umbraco.Dashboard.Models.Analytics.Blocks {
                 Metrics = new[] {
                     AnalyticsMetric.Visits,
                     AnalyticsMetric.Pageviews,
-                    AnalyticsMetric.NewVisits,
+                    AnalyticsMetric.NewUsers,
                     AnalyticsMetric.AvgTimeOnSite
                 },
                 Sorting = new AnalyticsSortOptions().AddDescending(AnalyticsMetric.Visits)
