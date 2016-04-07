@@ -97,7 +97,7 @@ namespace Skybrud.Umbraco.Dashboard {
                 LogHelper.Error<DashboardContext>("Unable to load configuration file for the Dashboard: " + ex.Message, ex);
 
                 // Initialize an empty configuration (so we have a fallback)
-                Configuration = new DashboardConfiguration(new JObject());
+                Configuration = new DashboardConfiguration(false, new JObject());
 
             }
 

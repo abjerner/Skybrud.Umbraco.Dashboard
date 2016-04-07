@@ -29,11 +29,17 @@ namespace Skybrud.Umbraco.Dashboard.Config {
             get { return Analytics != null; }
         }
 
+        /// <summary>
+        /// Gets whether the configuration file exists and is valid.
+        /// </summary>
+        public bool IsValid { get; private set; }
+
         #endregion
 
         #region Constructors
 
-        internal DashboardConfiguration(JObject obj) {
+        internal DashboardConfiguration(bool valid, JObject obj) {
+            IsValid = valid;
             JObject = obj;
             Analytics = obj.GetObject("analytics", AnalyticsConfiguration.Parse);
         }
@@ -56,7 +62,7 @@ namespace Skybrud.Umbraco.Dashboard.Config {
             JObject obj = JObject.Parse(contents);
 
             // Initialize a new configuration instance
-            return new DashboardConfiguration(obj);
+            return new DashboardConfiguration(true, obj);
 
         }
 
