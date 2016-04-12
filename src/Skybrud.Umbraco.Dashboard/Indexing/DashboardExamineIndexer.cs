@@ -1,5 +1,6 @@
 ﻿using Examine;
 using Examine.Providers;
+using UmbracoExamine;
 
 namespace Skybrud.Umbraco.Dashboard.Indexing {
 
@@ -14,6 +15,8 @@ namespace Skybrud.Umbraco.Dashboard.Indexing {
         }
 
         private void internalIndexer_GatheringNodeData(object sender, IndexingNodeDataEventArgs e) {
+
+            if (e.IndexType != IndexTypes.Content) return;
 
             // Make the path searchable
             string path;

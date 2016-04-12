@@ -3,8 +3,8 @@
   "description": "Package extending the dashboard capabilities of the Umbraco backoffice.",
   "company": "Skybrud.dk",
   "product": "Skybrud.Umbraco.Dashboard",
-  "copyright": "Copyright © 2015",
+  "copyright": "Copyright © 2016",
   "version": "1.0.0.0",
-  "informationalVersion": "1.0.0-beta1",
-  "fileVersion": "0.0.469.13"
+  "informationalVersion": "1.0.0-beta2",
+  "fileVersion": "0.0.502.2"
 }
