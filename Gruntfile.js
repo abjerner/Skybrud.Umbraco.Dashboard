@@ -33,7 +33,7 @@ module.exports = function(grunt) {
 		},
 		nugetpack: {
 			dist: {
-				src: 'src/' + pkg.name + '/' + pkg.name + '.nuspec',
+				src: 'src/' + pkg.name + '/' + pkg.name + '.csproj',
 				dest: 'nuget/'
 			}
 		}
@@ -43,8 +43,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-nuget');
 	grunt.loadNpmTasks('grunt-zip');
 
-	grunt.registerTask('dev', ['zip']);
-	grunt.registerTask('release', ['zip']);
+	grunt.registerTask('dev', ['zip', 'nugetpack']);
+	grunt.registerTask('release', ['zip', 'nugetpack']);
 
 	grunt.registerTask('default', ['dev']);
 
