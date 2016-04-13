@@ -30,7 +30,7 @@ namespace Skybrud.Umbraco.Dashboard.Models.Analytics.Blocks {
                 Metrics = new[] {
                     AnalyticsMetric.Visits,
                     AnalyticsMetric.Pageviews,
-                    AnalyticsMetric.NewUsers,
+                    AnalyticsMetric.NewVisits,
                     AnalyticsMetric.AvgTimeOnSite
                 },
                 Sorting = new AnalyticsSortOptions().AddDescending(AnalyticsMetric.Visits)
