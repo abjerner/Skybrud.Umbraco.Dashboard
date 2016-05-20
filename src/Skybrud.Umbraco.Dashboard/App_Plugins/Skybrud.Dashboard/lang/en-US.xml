@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+
+<language alias="en" intName="English (US)" localName="English (US)" lcid="" culture="en-US">
+  <area alias="dashboard">
+    <key alias="statistics">Statistics</key>
+    <key alias="statisticsFor">Statistics for</key>
+  </area>
+  <area alias="dashboard">
+    <key alias="lastEditedTitle">Last edited pages</key>
+    <key alias="lastEditedToday">Today</key>
+    <key alias="lastEditedYesterday">Yesterday</key>
+  </area>
+  <area alias="dashboard">
+    <key alias="analyticsTitle">Statistics</key>
+    <key alias="analyticsGoTo">Go to Google Analytics</key>
+    <key alias="analyticsYesterday">Yesterday</key>
+    <key alias="analyticsLastWeek">Last week</key>
+    <key alias="analyticsLastMonth">Last month</key>
+    <key alias="analyticsLastYear">Last year</key>
+    <key alias="analyticsVisitsTitle">Visits</key>
+    <key alias="analyticsPopularTitle">Popular pages</key>
+    <key alias="analyticsDevicesTitle">Devices</key>
+    <key alias="analyticsDevicesDesktop">Desktop</key>
+    <key alias="analyticsDevicesMobile">Mobile</key>
+    <key alias="analyticsDevicesTablet">Tablet</key>
+    <key alias="ga:visits">Visits</key>
+    <key alias="ga:pageviews">Pageviews</key>
+    <key alias="ga:newVisits">New visits</key>
+    <key alias="ga:avgTimeOnSite">Avg. time per visit</key>
+    <key alias="ga:sessions">Sessions</key>
+    <key alias="ga:newUsers">New users</key>
+    <key alias="ga:avgSessionDuration">Avg. time per session</key>
+  </area>
+</language>
