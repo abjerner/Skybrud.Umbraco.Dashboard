@@ -27,5 +27,8 @@
     <key alias="ga:pageviews">Pageviews</key>
     <key alias="ga:newVisits">New visits</key>
     <key alias="ga:avgTimeOnSite">Avg. time per visit</key>
+    <key alias="ga:sessions">Sessions</key>
+    <key alias="ga:newUsers">New users</key>
+    <key alias="ga:avgSessionDuration">Avg. time per session</key>
   </area>
 </language>

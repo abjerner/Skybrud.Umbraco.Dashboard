@@ -27,5 +27,8 @@
     <key alias="ga:pageviews">Sidevisninger</key>
     <key alias="ga:newVisits">Nye besøgende</key>
     <key alias="ga:avgTimeOnSite">Gns. tid pr. besøg</key>
+    <key alias="ga:sessions">Sessioner</key>
+    <key alias="ga:newUsers">Nye brugere</key>
+    <key alias="ga:avgSessionDuration">Gns. tid pr. session</key>
   </area>
 </language>
