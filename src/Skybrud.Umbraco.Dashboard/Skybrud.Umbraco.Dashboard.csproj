@@ -203,6 +203,7 @@
     <Compile Include="Models\Json\DashboardJsonObject.cs" />
     <Compile Include="Models\Properties\DashboardErrorProperty.cs" />
     <Compile Include="PropertyEditors\DashboardPropertyValueConverter.cs" />
+    <Content Include="App_Plugins\Skybrud.Dashboard\lang\en-US.xml" />
     <Content Include="App_Plugins\Skybrud.Dashboard\lang\en-GB.xml" />
     <Content Include="App_Plugins\Skybrud.Dashboard\lang\da-DK.xml" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Scripts\Controllers\AnalyticsProfileDialog.js" />
