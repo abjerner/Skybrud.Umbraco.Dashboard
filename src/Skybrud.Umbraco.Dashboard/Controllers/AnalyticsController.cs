@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
-using System.Web;
 using System.Web.Http;
 using Newtonsoft.Json.Linq;
 using Skybrud.Social.Google;
+using Skybrud.Umbraco.Dashboard.Config;
 using Skybrud.Umbraco.Dashboard.Config.Analytics;
+using Skybrud.Umbraco.Dashboard.Constants;
 using Skybrud.Umbraco.Dashboard.Exceptions;
 using Skybrud.Umbraco.Dashboard.Interfaces;
 using Skybrud.Umbraco.Dashboard.Models.Analytics;
@@ -18,14 +19,49 @@ using Umbraco.Core.Models;
 using Umbraco.Web.Mvc;
 using Umbraco.Web.WebApi;
 
+using Skybrud.Umbraco.Dashboard.Extensions.HttpRequestMessage;
+
 namespace Skybrud.Umbraco.Dashboard.Controllers {
 
+    /// <summary>
+    /// WebAPI controller for accessing the Google Analnytics API and related data from within Umbraco.
+    /// </summary>
     [PluginController("SkybrudDashboard")]
     [JsonOnlyConfiguration]
     public class AnalyticsController : UmbracoAuthorizedApiController {
 
+        #region Properties
+
         /// <summary>
-        /// Gets statistics from Google Analytics for the site with the specified <code>siteId</code>.
+        /// Gets a reference to the current instance of <see cref="DashboardConfiguration"/>.
+        /// </summary>
+        protected DashboardConfiguration Config {
+            get { return DashboardContext.Current.Configuration; }
+        }
+
+        /// <summary>
+        /// Gets whether there is a valid configuration for Google Analytics, which basically means that the
+        /// <code>analytics</code> property should be present in the configuration file.
+        /// </summary>
+        public bool HasAnalytics {
+            get { return Config.HasAnalytics; }
+        }
+
+        /// <summary>
+        /// Gets a reference to an instance of <see cref="AnalyticsConfiguration"/> representing the configuration
+        /// specific to Google Analytics. If the <code>analytics</code> property isn't part of the configuration file,
+        /// this property will return <code>null</code>.
+        /// </summary>
+        public AnalyticsConfiguration Analytics {
+            get { return Config.Analytics; }
+        }
+
+        #endregion
+
+        #region Public API methods
+
+        /// <summary>
+        /// Gets statistics from Google Analytics for the site with the specified <paramref name="siteId"/>.
         /// </summary>
         /// <param name="siteId">The ID of the site.</param>
         /// <param name="period">The alias of the period for which statistics should be shown.</param>
@@ -70,7 +106,6 @@ namespace Skybrud.Umbraco.Dashboard.Controllers {
             }
 
         }
-
 
         [HttpGet]
         public object GetPageData(int siteId, int pageId, string period, bool cache = true) {
@@ -127,8 +162,13 @@ namespace Skybrud.Umbraco.Dashboard.Controllers {
         [HttpGet]
         public object GetAccounts(string query = null, bool cache = true) {
 
+            // Validate the configuration
+            if (!HasAnalytics) return Request.CreateResponse(DashboardError.AnalyticsNotConfigured);
+            if (Analytics.Clients.Length == 0) return Request.CreateResponse(DashboardError.AnalyticsNoClients);
+            if (!Analytics.Clients.Any(client => client.Users.Any())) return Request.CreateResponse(DashboardError.AnalyticsNoUsers);
+
             TimeSpan lifetime = TimeSpan.FromMinutes(30);
-            
+
             JArray usersArray = new JArray();
 
             foreach (AnalyticsClientConfiguration client in DashboardContext.Current.Configuration.Analytics.Clients) {
@@ -176,6 +216,8 @@ namespace Skybrud.Umbraco.Dashboard.Controllers {
             return usersArray;
 
         }
+
+        #endregion
 
         private JArray Search(AnalyticsCachedUser user, string query) {
             

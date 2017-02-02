@@ -31,4 +31,14 @@
     <key alias="ga:newUsers">Nye brugere</key>
     <key alias="ga:avgSessionDuration">Gns. tid pr. session</key>
   </area>
+  <area alias="dashboard">
+    <key alias="analyticsNotConfiguredTitle">Google Analytics er ikke konfigureret</key>
+    <key alias="analyticsNotConfiguredMessage">Der er i øjeblikket ingen konfiguration til integrationen med Google Analytics.</key>
+
+    <key alias="analyticsNoClientsTitle">Ingen Google-klienter konfigureret</key>
+    <key alias="analyticsNoClientsMessage">Der er i øjeblikket ikke tilføjet nogen Google-klienter til konfiguration for Google Analytics.</key>
+
+    <key alias="analyticsNoUsersTitle">Ingen Google-brugere tilføjet</key>
+    <key alias="analyticsNoUsersMessage">Der er i øjeblikket ikke tilføjet nogen Google-brugere til konfiguration for Google Analytics.</key>
+  </area>
 </language>

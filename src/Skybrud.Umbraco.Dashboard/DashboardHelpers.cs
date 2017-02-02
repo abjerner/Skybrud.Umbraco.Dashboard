@@ -6,7 +6,7 @@ using System.Web;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Skybrud.Social.Google.Analytics.Interfaces;
-using Skybrud.Umbraco.Dashboard.Extensions.JObject;
+using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Umbraco.Dashboard.Interfaces;
 using Umbraco.Core;
 using Umbraco.Core.Models.Membership;

@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
-using Skybrud.Umbraco.Dashboard.Extensions.JObject;
+using Skybrud.Essentials.Json.Extensions;
 
 namespace Skybrud.Umbraco.Dashboard.Config.Analytics {
 

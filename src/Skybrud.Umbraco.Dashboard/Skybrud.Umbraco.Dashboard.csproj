@@ -199,6 +199,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\DashboardConstants.cs" />
+    <Compile Include="Constants\DashboardError.cs" />
+    <Compile Include="Extensions\HttpRequestMessage\HttpRequestMessageExtensions.cs" />
     <Compile Include="Models\Analytics\Selection\DashboardAnalyticsSiteSelection.cs" />
     <Compile Include="Models\Analytics\Selection\DashboardAnalyticsSiteSelectionAccount.cs" />
     <Compile Include="Models\Analytics\Selection\DashboardAnalyticsSiteSelectionProfile.cs" />
@@ -227,7 +230,6 @@
     <Compile Include="DashboardTranslations.cs" />
     <Compile Include="Exceptions\DashboardException.cs" />
     <Compile Include="Extensions\DashboardTabListExtensions.cs" />
-    <Compile Include="Extensions\JObject\RemoveWhenUpdatedToNewestSkybrudSocial.cs" />
     <Compile Include="Indexing\DashboardExamineIndexer.cs" />
     <Compile Include="Interfaces\IAnalyticsSite.cs" />
     <Compile Include="Interfaces\IDashboardBlock.cs" />
@@ -305,9 +307,6 @@
     <Content Include="App_Plugins\Skybrud.Dashboard\Views\PropertyEditors\DashboardPageStatistics.html" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Views\PropertyEditors\DashboardSiteStatistics.html" />
     <None Include="app.config" />
-    <None Include="App_Plugins\Skybrud.Dashboard\Styles\Default.css.map">
-      <DependentUpon>Default.css</DependentUpon>
-    </None>
     <None Include="App_Plugins\Skybrud.Dashboard\Styles\_dialog.less" />
     <None Include="packages.config" />
     <None Include="Skybrud.Umbraco.Dashboard.nuspec" />

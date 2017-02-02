@@ -13,6 +13,35 @@
     background: white;
 }
 
+.@{dialogClassName} {
+    .error {
+        text-align: center;
+        padding: 60px;
+        position: relative;
+        margin-top: 75px;
+        .errorbg {
+            position: absolute;
+            top: 70px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: #f5f5f5;
+            font-size: 200px;
+            z-index: 3;
+        }
+        .title {
+            font-size: 20px;
+            color: #000;
+            margin-bottom: 10px;
+        }
+        .title,
+        .message {
+            position: relative;
+            z-index: 5;
+        }
+    }
+}
+
 .@{dialogClassName}-header {
     border-bottom: 1px solid #D9D9D9;
     background: #F8F8F8;

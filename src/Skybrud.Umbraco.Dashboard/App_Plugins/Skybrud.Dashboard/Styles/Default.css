@@ -90,7 +90,7 @@ tr.positive {
   height: 16px;
   content: ' ';
   display: block;
-  background: url('/App_Plugins/Skybrud.Dashboard/Images/sprite.png?2') -50px -63px no-repeat;
+  background: url('/App_Plugins/Skybrud.Dashboard/Images/sprite.png?v=beta003') -50px -63px no-repeat;
 }
 .block.links > ul > li .value {
   position: absolute;
@@ -121,7 +121,7 @@ tr.positive {
   content: ' ';
   width: 16px;
   height: 16px;
-  background: url('/App_Plugins/Skybrud.Dashboard/Images/sprite.png?2') 0 -63px no-repeat;
+  background: url('/App_Plugins/Skybrud.Dashboard/Images/sprite.png?v=beta003') 0 -63px no-repeat;
   display: block;
 }
 .block.links > ul > li a:hover {
@@ -338,7 +338,7 @@ tr.positive {
   height: 16px;
   content: ' ';
   display: block;
-  background: url('/App_Plugins/Skybrud.Dashboard/Images/sprite.png?2') -16px -63px no-repeat;
+  background: url('/App_Plugins/Skybrud.Dashboard/Images/sprite.png?v=beta003') -16px -63px no-repeat;
 }
 .visits li.down {
   color: #941414;
@@ -351,7 +351,7 @@ tr.positive {
   height: 16px;
   content: ' ';
   display: block;
-  background: url('/App_Plugins/Skybrud.Dashboard/Images/sprite.png?2') -32px -63px no-repeat;
+  background: url('/App_Plugins/Skybrud.Dashboard/Images/sprite.png?v=beta003') -32px -63px no-repeat;
 }
 .visits table.details {
   width: 100%;
@@ -400,13 +400,13 @@ tr.positive {
   color: #27a216;
 }
 .visits table.details tr.up .change:after {
-  background: url('/App_Plugins/Skybrud.Dashboard/Images/sprite.png?2') -16px -63px no-repeat;
+  background: url('/App_Plugins/Skybrud.Dashboard/Images/sprite.png?v=beta003') -16px -63px no-repeat;
 }
 .visits table.details tr.down {
   color: #941414;
 }
 .visits table.details tr.down .change:after {
-  background: url('/App_Plugins/Skybrud.Dashboard/Images/sprite.png?2') -32px -63px no-repeat;
+  background: url('/App_Plugins/Skybrud.Dashboard/Images/sprite.png?v=beta003') -32px -63px no-repeat;
 }
 .box.analytics .block.devices .pie {
   margin: 10px 0;
@@ -485,6 +485,32 @@ tr.positive {
   -moz-box-shadow: none;
   box-shadow: none;
   background: white;
+}
+.dashboard-dialog .error {
+  text-align: center;
+  padding: 60px;
+  position: relative;
+  margin-top: 75px;
+}
+.dashboard-dialog .error .errorbg {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: #f5f5f5;
+  font-size: 200px;
+  z-index: 3;
+}
+.dashboard-dialog .error .title {
+  font-size: 20px;
+  color: #000;
+  margin-bottom: 10px;
+}
+.dashboard-dialog .error .title,
+.dashboard-dialog .error .message {
+  position: relative;
+  z-index: 5;
 }
 .dashboard-dialog-header {
   border-bottom: 1px solid #D9D9D9;
@@ -793,4 +819,3 @@ tr.positive {
 .AnalyticsProfileSelection table table tbody tr + tr td {
   padding-top: 2px;
 }
-/*# sourceMappingURL=Default.css.map */

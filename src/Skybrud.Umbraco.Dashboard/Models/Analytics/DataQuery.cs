@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Web;
 using Newtonsoft.Json;
@@ -9,6 +10,8 @@ using Skybrud.Social.Google.Analytics.Objects;
 using Skybrud.Social.Google.Analytics.Responses;
 using Skybrud.Umbraco.Dashboard.Interfaces;
 using Skybrud.Umbraco.Dashboard.Models.Analytics.Blocks;
+using Umbraco.Core;
+using Umbraco.Core.Services;
 
 namespace Skybrud.Umbraco.Dashboard.Models.Analytics {
     
@@ -326,11 +329,11 @@ namespace Skybrud.Umbraco.Dashboard.Models.Analytics {
             return new OmgDataRow {
                 Alias = key,
                 Label = Context.Translate(field),
-                OldValue = new { raw = valueOld, text = String.Join(" og ", text1) },
-                Value = new { raw = valueNew, text = String.Join(" og ", text2) },
+                OldValue = new { raw = valueOld, text = String.Join(" ", text1) },
+                Value = new { raw = valueNew, text = String.Join(" ", text2) },
                 Change = new {
                     raw = change,
-                    text = (ts3.Ticks > 0 ? "+" : "") + String.Join(" og ", text3),
+                    text = (ts3.Ticks > 0 ? "+" : "") + String.Join(" ", text3),
                     percent = new {
                         raw = Double.IsInfinity(percent) ? null : (object) percent,
                         text = Double.IsInfinity(percent) ? null : FormatChange(percent)

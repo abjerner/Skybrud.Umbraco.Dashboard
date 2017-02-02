@@ -12,6 +12,10 @@
         $http.get('/umbraco/backoffice/SkybrudDashboard/Analytics/GetAccounts' + ($scope.query ? '?query=' + $scope.query : '')).success(function (res) {
             $scope.users = res;
             $scope.loading = false;
+            $scope.error = null;
+        }).error(function (res) {
+            $scope.loading = false;
+            $scope.error = res.meta;
         });
     };
 

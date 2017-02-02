@@ -31,4 +31,14 @@
     <key alias="ga:newUsers">New users</key>
     <key alias="ga:avgSessionDuration">Avg. time per session</key>
   </area>
+  <area alias="dashboard">
+    <key alias="analyticsNotConfiguredTitle">Google Analytics has not been configured</key>
+    <key alias="analyticsNotConfiguredMessage">There is currently no configuration for the integration with Google Analytics.</key>
+
+    <key alias="analyticsNoClientsTitle">No Google clients configured</key>
+    <key alias="analyticsNoClientsMessage">There are currently no Google client in the configuration for Google Analytics.</key>
+
+    <key alias="analyticsNoUsersTitle">No Google users added</key>
+    <key alias="analyticsNoUsersMessage">There has not yet been added any Google users to the Google Analytics configuration.</key>
+  </area>
 </language>

@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Skybrud.Umbraco.Dashboard.Extensions.JObject;
+using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Umbraco.Dashboard.Models.Json;
 
 namespace Skybrud.Umbraco.Dashboard.Models.Analytics.Selection {
