@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Web;
 using Newtonsoft.Json;
@@ -71,8 +72,8 @@ namespace Skybrud.Umbraco.Dashboard {
         /// <param name="args">The arguments to be inserted into the phrase.</param>
         public static string Translate(CultureInfo culture, string key, params object[] args) {
             ILocalizedTextService text = ApplicationContext.Current.Services.TextService;
-            if (args == null || args.Length == 0) return text.Localize(key, culture);
-            return String.Format(culture, text.Localize(key, culture), args);
+            string[] strArgs = (from arg in args select arg + "").ToArray();
+            return text.Localize(key, culture, strArgs);
         }
 
         /// <summary>

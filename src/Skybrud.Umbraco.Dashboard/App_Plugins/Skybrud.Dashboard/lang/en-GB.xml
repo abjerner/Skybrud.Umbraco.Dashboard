@@ -23,6 +23,7 @@
     <key alias="analyticsDevicesDesktop">Desktop</key>
     <key alias="analyticsDevicesMobile">Mobile</key>
     <key alias="analyticsDevicesTablet">Tablet</key>
+    <key alias="analyticsWeekX">Week %0%</key>
     <key alias="ga:visits">Visits</key>
     <key alias="ga:pageviews">Pageviews</key>
     <key alias="ga:newVisits">New visits</key>

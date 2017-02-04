@@ -215,7 +215,9 @@ namespace Skybrud.Umbraco.Dashboard.Models.Analytics {
                     }
                     break;
                 }
-                case "ga:yearWeek": text = Context.Translate("analytics_week_x", text.Substring(4)); break;
+                case "ga:yearWeek":
+                    int year = Int32.Parse(text.Substring(4));
+                    text = Context.Translate("analyticsWeekX", year + ""); break;
             }
 
             return new OmgDataRow {
