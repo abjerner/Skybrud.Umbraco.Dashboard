@@ -819,3 +819,32 @@ tr.positive {
 .AnalyticsProfileSelection table table tbody tr + tr td {
   padding-top: 2px;
 }
+.dashboard-error {
+  text-align: center;
+  position: relative;
+  margin-top: 75px;
+  max-width: 750px;
+  margin: 0 auto;
+  margin: 25px auto;
+  padding: 50px;
+}
+.dashboard-error .errorbg {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: #f5f5f5;
+  font-size: 200px;
+  z-index: 3;
+}
+.dashboard-error .title {
+  font-size: 20px;
+  color: #000;
+  margin-bottom: 10px;
+}
+.dashboard-error .title,
+.dashboard-error .message {
+  position: relative;
+  z-index: 5;
+}

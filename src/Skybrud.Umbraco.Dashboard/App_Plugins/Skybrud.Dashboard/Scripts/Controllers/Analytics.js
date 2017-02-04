@@ -33,8 +33,8 @@
 
     function callbackError(res, status) {
         $scope.error = {
-            title: 'Hov! Der skete en fejl!',
-            message: res.meta.error
+            title: res.meta && res.meta.title ? res.meta.title : 'Hov! Der skete en fejl!',
+            message: res.meta && res.meta.message ? res.meta.message : res.meta.error
         };
         $scope.loading = false;
     }

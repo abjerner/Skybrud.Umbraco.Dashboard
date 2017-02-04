@@ -32,12 +32,18 @@
     <key alias="ga:avgSessionDuration">Gns. tid pr. session</key>
   </area>
   <area alias="dashboard">
+    <key alias="unknownServerErrorTitle">Ukendt serverfejl</key>
+    <key alias="unknownServerErrorMessage">Der skete en ukendt fejl på serveren. Kontakt din administrator eller se loggen for yderligere information.</key>
+    <key alias="siteNotFoundTitle">Sitet blev ikke fundet</key>
+    <key alias="siteNotFoundMessage">Et site med det angivne ID blev ikke fundet.</key>
+    <key alias="analyticsSiteNotConfiguredTitle">Google Analytics</key>
+    <key alias="analyticsSiteNotConfiguredMessage">Det valgte side understøtter eller er ikke konfigureret til visning af statistik fra Google Analytics.</key>
+    <key alias="analyticsAuthInvalidGrantTitle">Utilstrækkelige rettigheder</key>
+    <key alias="analyticsAuthInvalidGrantMessage">Der ser ud til at være et problem med rettighederne til Google Analytics' API. Kontakt din administrator eller se loggen for yderligere information.</key>
     <key alias="analyticsNotConfiguredTitle">Google Analytics er ikke konfigureret</key>
     <key alias="analyticsNotConfiguredMessage">Der er i øjeblikket ingen konfiguration til integrationen med Google Analytics.</key>
-
     <key alias="analyticsNoClientsTitle">Ingen Google-klienter konfigureret</key>
     <key alias="analyticsNoClientsMessage">Der er i øjeblikket ikke tilføjet nogen Google-klienter til konfiguration for Google Analytics.</key>
-
     <key alias="analyticsNoUsersTitle">Ingen Google-brugere tilføjet</key>
     <key alias="analyticsNoUsersMessage">Der er i øjeblikket ikke tilføjet nogen Google-brugere til konfiguration for Google Analytics.</key>
   </area>

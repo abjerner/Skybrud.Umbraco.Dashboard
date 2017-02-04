@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Http;
 using Skybrud.Essentials.Strings;
 using Skybrud.Umbraco.Dashboard.Constants;
+using Skybrud.Umbraco.Dashboard.Exceptions;
 using Umbraco.Core;
 using Umbraco.Core.Services;
 
@@ -47,13 +48,45 @@ namespace Skybrud.Umbraco.Dashboard.Extensions.HttpRequestMessage {
 
             string title = service.Localize(translationKey + "Title", CultureInfo.CurrentCulture);
             string message = service.Localize(translationKey + "Message", CultureInfo.CurrentCulture);
-            if (!String.IsNullOrWhiteSpace(title)) meta.Add("title", title);
-            if (!String.IsNullOrWhiteSpace(message)) meta.Add("message", message);
+            if (!String.IsNullOrWhiteSpace(title) && !title.StartsWith("[")) meta.Add("title", title);
+            if (!String.IsNullOrWhiteSpace(message) && !message.StartsWith("[")) meta.Add("message", message);
 
             return request.CreateResponse(statusCode, new {
                 meta
             });
         
+        }
+
+        public static HttpResponseMessage CreateResponse(this System.Net.Http.HttpRequestMessage request, DashboardException exception) {
+
+            Newtonsoft.Json.Linq.JObject meta = new Newtonsoft.Json.Linq.JObject {
+                {"code", (int) exception.StatusCode},
+                {"error", exception.ErrorCode}
+            };
+
+            if (!String.IsNullOrWhiteSpace(exception.Title) && !exception.Title.StartsWith("[")) meta.Add("title", exception.Title);
+            if (!String.IsNullOrWhiteSpace(exception.Message) && !exception.Message.StartsWith("[")) meta.Add("message", exception.Message);
+
+            return request.CreateResponse(exception.StatusCode, new {
+                meta
+            });
+
+        }
+
+        public static HttpResponseMessage CreateResponse(this System.Net.Http.HttpRequestMessage request, Exception exception) {
+
+            Newtonsoft.Json.Linq.JObject meta = new Newtonsoft.Json.Linq.JObject {
+                {"code", 500},
+                {"error", "unknown_error"}
+            };
+
+            meta.Add("title", "Unknown error");
+            if (!String.IsNullOrWhiteSpace(exception.Message)) meta.Add("message", exception.Message);
+
+            return request.CreateResponse(HttpStatusCode.InternalServerError, new {
+                meta
+            });
+
         }
 
     }

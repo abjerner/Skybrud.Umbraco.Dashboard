@@ -2,10 +2,12 @@
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Web.Http;
 using Newtonsoft.Json.Linq;
 using Skybrud.Social.Google;
+using Skybrud.Social.Google.Exceptions;
 using Skybrud.Umbraco.Dashboard.Config;
 using Skybrud.Umbraco.Dashboard.Config.Analytics;
 using Skybrud.Umbraco.Dashboard.Constants;
@@ -15,6 +17,7 @@ using Skybrud.Umbraco.Dashboard.Models.Analytics;
 using Skybrud.Umbraco.Dashboard.Models.Analytics.Cached;
 using Skybrud.WebApi.Json;
 using Skybrud.WebApi.Json.Meta;
+using Umbraco.Core.Logging;
 using Umbraco.Core.Models;
 using Umbraco.Web.Mvc;
 using Umbraco.Web.WebApi;
@@ -66,7 +69,6 @@ namespace Skybrud.Umbraco.Dashboard.Controllers {
         /// <param name="siteId">The ID of the site.</param>
         /// <param name="period">The alias of the period for which statistics should be shown.</param>
         /// <param name="cache">Whether we should attempt to read the statistics from the cache.</param>
-        /// <returns></returns>
         [HttpGet]
         public object GetSiteData(int siteId, string period, bool cache = true) {
 
@@ -76,12 +78,12 @@ namespace Skybrud.Umbraco.Dashboard.Controllers {
 
                 // Get the site
                 IDashboardSite site = DashboardContext.Current.GetSiteById(siteId);
-                if (site == null) throw new DashboardException(HttpStatusCode.NotFound, "Site ikke fundet", "Et site det angivne ID blev ikke fundet");
+                if (site == null) throw new DashboardException(HttpStatusCode.NotFound, DashboardError.SiteNotFound);
 
                 // Get analytics information
                 IAnalyticsSite analytics = site as IAnalyticsSite;
                 if (analytics == null || !analytics.HasAnalytics) {
-                    throw new DashboardException(HttpStatusCode.InternalServerError, "Analytics", "Det valgte side understøtter eller er ikke konfigureret til visning af statistik fra Google Analytics");
+                    throw new DashboardException(DashboardError.AnalyticsSiteNotConfigured);
                 }
                 
                 // Build the query
@@ -94,14 +96,21 @@ namespace Skybrud.Umbraco.Dashboard.Controllers {
                 // Return a nice JSON response
                 return JsonMetaResponse.GetSuccess(res);
 
-
             } catch (DashboardException ex) {
 
-                return JsonMetaResponse.GetError(HttpStatusCode.InternalServerError, ex.Title + ": " + ex.Message);
+                return Request.CreateResponse(ex);
+
+            } catch (GoogleOAuthException ex) {
+
+                LogHelper.Error<AnalyticsController>("Unable to fetch Analytics site data", ex);
+
+                return Request.CreateResponse(ex.Message == "invalid_grant" ? DashboardError.AnalyticsAuthInvalidGrant : DashboardError.AnalyticsAuthError);
 
             } catch (Exception ex) {
 
-                return JsonMetaResponse.GetError(HttpStatusCode.InternalServerError, "Oopsie (" + ex.GetType() + "): " + ex.Message, ex.StackTrace.Split('\n'));
+                LogHelper.Error<AnalyticsController>("Unable to fetch Analytics site data", ex);
+
+                return Request.CreateResponse(DashboardError.UnknownServerError);
 
             }
 
@@ -159,6 +168,12 @@ namespace Skybrud.Umbraco.Dashboard.Controllers {
 
         }
 
+        /// <summary>
+        /// Gets a list of all Google Analytics accounts, web properties and profiles of the Google users added to <code>~</code>
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="cache"></param>
+        /// <returns></returns>
         [HttpGet]
         public object GetAccounts(string query = null, bool cache = true) {
 
@@ -171,49 +186,69 @@ namespace Skybrud.Umbraco.Dashboard.Controllers {
 
             JArray usersArray = new JArray();
 
-            foreach (AnalyticsClientConfiguration client in DashboardContext.Current.Configuration.Analytics.Clients) {
+            try  {
 
-                foreach (AnalyticsUserConfiguration user in client.Users) {
+                foreach (AnalyticsClientConfiguration client in DashboardContext.Current.Configuration.Analytics.Clients) {
 
-                    string path = DashboardContext.Current.MapPath(DashboardConstants.AnalyticsCachePath + "/Users/" + user.Id + ".json");
+                    foreach (AnalyticsUserConfiguration user in client.Users) {
 
-                    AnalyticsCachedUser cachedUser;
+                        string path = DashboardContext.Current.MapPath(DashboardConstants.AnalyticsCachePath + "/Users/" + user.Id + ".json");
 
-                    if (cache && System.IO.File.Exists(path) && System.IO.File.GetLastWriteTimeUtc(path) > DateTime.UtcNow.Add(lifetime)) {
+                        AnalyticsCachedUser cachedUser;
 
-                        // Load the user from the disk
-                        cachedUser = AnalyticsCachedUser.Load(path);
+                        if (cache && System.IO.File.Exists(path) && System.IO.File.GetLastWriteTimeUtc(path) > DateTime.UtcNow.Add(lifetime)) {
 
-                    } else {
+                            // Load the user from the disk
+                            cachedUser = AnalyticsCachedUser.Load(path);
 
-                        GoogleService service = GoogleService.CreateFromRefreshToken(client.ClientId, client.ClientSecret, user.RefreshToken);
+                        } else {
 
-                        var response1 = service.Analytics.Management.GetAccounts();
-                        var response2 = service.Analytics.Management.GetWebProperties();
-                        var response3 = service.Analytics.Management.GetProfiles();
+                            GoogleService service = GoogleService.CreateFromRefreshToken(client.ClientId, client.ClientSecret, user.RefreshToken);
 
-                        cachedUser = AnalyticsCachedUser.GetFromResponses(user, response1, response2, response3);
+                            var response1 = service.Analytics.Management.GetAccounts();
+                            var response2 = service.Analytics.Management.GetWebProperties();
+                            var response3 = service.Analytics.Management.GetProfiles();
 
-                        Directory.CreateDirectory(Path.GetDirectoryName(path));
-                        cachedUser.Save(path);
+                            cachedUser = AnalyticsCachedUser.GetFromResponses(user, response1, response2, response3);
+
+                            Directory.CreateDirectory(Path.GetDirectoryName(path));
+                            cachedUser.Save(path);
+
+                        }
+
+                        // Only include accounts/web properties/profiles that match "query"
+                        JArray accountsArray = Search(cachedUser, (query ?? "").ToLower());
+
+                        usersArray.Add(new JObject {
+                            {"id", user.Id},
+                            {"email", user.Email},
+                            {"name", user.Name},
+                            {"accounts", accountsArray}
+                        });
 
                     }
-                    
-                    // Only include accounts/web properties/profiles that match "query"
-                    JArray accountsArray = Search(cachedUser, (query ?? "").ToLower());
-
-                    usersArray.Add(new JObject {
-                        {"id", user.Id},
-                        {"email", user.Email},
-                        {"name", user.Name},
-                        {"accounts", accountsArray}
-                    });
 
                 }
 
-            }
+                return usersArray;
 
-            return usersArray;
+            } catch (DashboardException ex) {
+
+                return Request.CreateResponse(ex);
+
+            } catch (GoogleOAuthException ex) {
+
+                LogHelper.Error<AnalyticsController>("Unable to fetch Analytics site data", ex);
+
+                return Request.CreateResponse(ex.Message == "invalid_grant" ? DashboardError.AnalyticsAuthInvalidGrant : DashboardError.AnalyticsAuthError);
+
+            } catch (Exception ex) {
+
+                LogHelper.Error<AnalyticsController>("Unable to fetch Analytics site data", ex);
+
+                return Request.CreateResponse(DashboardError.UnknownServerError);
+
+            }
 
         }
 

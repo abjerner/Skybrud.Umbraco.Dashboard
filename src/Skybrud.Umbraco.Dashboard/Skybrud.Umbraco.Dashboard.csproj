@@ -210,9 +210,9 @@
     <Compile Include="Models\Json\DashboardJsonObject.cs" />
     <Compile Include="Models\Properties\DashboardErrorProperty.cs" />
     <Compile Include="PropertyEditors\DashboardPropertyValueConverter.cs" />
-    <Content Include="App_Plugins\Skybrud.Dashboard\lang\en-US.xml" />
-    <Content Include="App_Plugins\Skybrud.Dashboard\lang\en-GB.xml" />
-    <Content Include="App_Plugins\Skybrud.Dashboard\lang\da-DK.xml" />
+    <Content Include="App_Plugins\Skybrud.Dashboard\Lang\en-US.xml" />
+    <Content Include="App_Plugins\Skybrud.Dashboard\Lang\en-GB.xml" />
+    <Content Include="App_Plugins\Skybrud.Dashboard\Lang\da-DK.xml" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Scripts\Controllers\AnalyticsProfileDialog.js" />
     <Compile Include="Config\Analytics\AnalyticsUserConfiguration.cs" />
     <Compile Include="Config\Analytics\AnalyticsClientConfiguration.cs" />
@@ -301,7 +301,6 @@
     </Content>
     <Content Include="App_Plugins\Skybrud.Dashboard\Styles\_loader.less" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Styles\Default.less" />
-    <None Include="App_Plugins\Skybrud.Dashboard\Translations.json__" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Views\Properties\Error.html" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Views\PropertyEditors\AnalyticsProfile.html" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Views\PropertyEditors\DashboardPageStatistics.html" />

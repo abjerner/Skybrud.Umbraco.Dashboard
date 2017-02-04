@@ -25,9 +25,12 @@
                 </div>
             </div>
         </div>
-        <div ng-if="error" style="padding: 50px; text-align: center;">
-            <div style="font-size: 30px; font-weight: bold;">{{error.title}}</div>
-            <div style="font-size: 16px; margin: 20px; color: #8A8A8A;">{{error.message}}</div>
+        <div class="dashboard-error" ng-if="error">
+            <div class="errorbg">
+                <i class="icon icon-alert-alt"></i>
+            </div>
+            <div class="title" ng-show="error.title">{{error.title}}</div>
+            <div class="message">{{error.message || error.error}}</div>
         </div>
     </div>
 	<dashboard-loader />
