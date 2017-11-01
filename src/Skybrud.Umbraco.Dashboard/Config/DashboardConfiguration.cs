@@ -1,7 +1,5 @@
 ﻿using System.IO;
 using Newtonsoft.Json.Linq;
-using Skybrud.Social.Json.Extensions.JObject;
-using Skybrud.Umbraco.Dashboard.Config.Analytics;
 
 namespace Skybrud.Umbraco.Dashboard.Config {
     
@@ -18,18 +16,6 @@ namespace Skybrud.Umbraco.Dashboard.Config {
         public JObject JObject { get; private set; }
 
         /// <summary>
-        /// Gets a reference to the configuration element for the Analytics implementation.
-        /// </summary>
-        public AnalyticsConfiguration Analytics { get; private set; }
-
-        /// <summary>
-        /// Gets whether the root configuration element contains an element for the Analytics implementation.
-        /// </summary>
-        public bool HasAnalytics {
-            get { return Analytics != null; }
-        }
-
-        /// <summary>
         /// Gets whether the configuration file exists and is valid.
         /// </summary>
         public bool IsValid { get; private set; }
@@ -41,7 +27,6 @@ namespace Skybrud.Umbraco.Dashboard.Config {
         internal DashboardConfiguration(bool valid, JObject obj) {
             IsValid = valid;
             JObject = obj;
-            Analytics = obj.GetObject("analytics", AnalyticsConfiguration.Parse);
         }
 
         #endregion

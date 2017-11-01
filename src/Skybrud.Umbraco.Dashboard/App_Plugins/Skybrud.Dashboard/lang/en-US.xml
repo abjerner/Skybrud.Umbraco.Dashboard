@@ -11,41 +11,9 @@
     <key alias="lastEditedYesterday">Yesterday</key>
   </area>
   <area alias="dashboard">
-    <key alias="analyticsTitle">Statistics</key>
-    <key alias="analyticsGoTo">Go to Google Analytics</key>
-    <key alias="analyticsYesterday">Yesterday</key>
-    <key alias="analyticsLastWeek">Last week</key>
-    <key alias="analyticsLastMonth">Last month</key>
-    <key alias="analyticsLastYear">Last year</key>
-    <key alias="analyticsVisitsTitle">Visits</key>
-    <key alias="analyticsPopularTitle">Popular pages</key>
-    <key alias="analyticsDevicesTitle">Devices</key>
-    <key alias="analyticsDevicesDesktop">Desktop</key>
-    <key alias="analyticsDevicesMobile">Mobile</key>
-    <key alias="analyticsDevicesTablet">Tablet</key>
-    <key alias="analyticsWeekX">Week %0%</key>
-    <key alias="ga:visits">Visits</key>
-    <key alias="ga:pageviews">Pageviews</key>
-    <key alias="ga:newVisits">New visits</key>
-    <key alias="ga:avgTimeOnSite">Avg. time per visit</key>
-    <key alias="ga:sessions">Sessions</key>
-    <key alias="ga:newUsers">New users</key>
-    <key alias="ga:avgSessionDuration">Avg. time per session</key>
-  </area>
-  <area alias="dashboard">
     <key alias="unknownServerErrorTitle">Unknown server error</key>
     <key alias="unknownServerErrorMessage">An unknown server error occured. Contact your administrator or check the log for further information.</key>
     <key alias="siteNotFoundTitle">Site not found</key>
     <key alias="siteNotFoundMessage">A site with the specified ID could not be found.</key>
-    <key alias="analyticsSiteNotConfiguredTitle">Google Analytics</key>
-    <key alias="analyticsSiteNotConfiguredMessage">The specified site doesn't have a valid configuration for Google Analytics.</key>
-    <key alias="analyticsAuthInvalidGrantTitle">Insufficient permissions</key>
-    <key alias="analyticsAuthInvalidGrantMessage">There seems to be a problem with the permissions for the Google Analytics API. Contact your administrator or check the log for further information.</key>
-    <key alias="analyticsNotConfiguredTitle">Google Analytics has not been configured</key>
-    <key alias="analyticsNotConfiguredMessage">There is currently no configuration for the integration with Google Analytics.</key>
-    <key alias="analyticsNoClientsTitle">No Google clients configured</key>
-    <key alias="analyticsNoClientsMessage">There are currently no Google client in the configuration for Google Analytics.</key>
-    <key alias="analyticsNoUsersTitle">No Google users added</key>
-    <key alias="analyticsNoUsersMessage">There has not yet been added any Google users to the Google Analytics configuration.</key>
   </area>
 </language>

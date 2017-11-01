@@ -1,12 +1,10 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Skybrud.Social.Google.Analytics.Interfaces;
 using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Umbraco.Dashboard.Interfaces;
 using Umbraco.Core;
@@ -36,23 +34,6 @@ namespace Skybrud.Umbraco.Dashboard {
                 return File.Exists(path) ? url + "?" + File.GetLastWriteTime(path).Ticks : url;
             }
             return url;
-        }
-
-        /// <summary>
-        /// Translates the phrase matching the name of the specified <code>field</code>.
-        /// </summary>
-        /// <param name="field">The field.</param>
-        public static string Translate(IAnalyticsField field) {
-            return Translate(DashboardContext.Current.Culture, "dashboard/" + field.Name);
-        }
-
-        /// <summary>
-        /// Translates the phrase matching the name of the specified <code>field</code>.
-        /// </summary>
-        /// <param name="culture">The culture to be used for the translation.</param>
-        /// <param name="field">The field.</param>
-        public static string Translate(CultureInfo culture, IAnalyticsField field) {
-            return Translate(culture, "dashboard/" + field.Name);
         }
 
         /// <summary>

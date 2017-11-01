@@ -102,10 +102,6 @@
       <HintPath>..\packages\Skybrud.Essentials.1.0.7\lib\net45\Skybrud.Essentials.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Skybrud.Social, Version=0.9.4.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Skybrud.Social.0.9.4.1\lib\net40\Skybrud.Social.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Skybrud.WebApi.Json, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Skybrud.WebApi.Json.1.0.3\lib\Skybrud.WebApi.Json.dll</HintPath>
       <Private>True</Private>
@@ -202,24 +198,12 @@
     <Compile Include="Constants\DashboardConstants.cs" />
     <Compile Include="Constants\DashboardError.cs" />
     <Compile Include="Extensions\HttpRequestMessage\HttpRequestMessageExtensions.cs" />
-    <Compile Include="Models\Analytics\Selection\DashboardAnalyticsSiteSelection.cs" />
-    <Compile Include="Models\Analytics\Selection\DashboardAnalyticsSiteSelectionAccount.cs" />
-    <Compile Include="Models\Analytics\Selection\DashboardAnalyticsSiteSelectionProfile.cs" />
-    <Compile Include="Models\Analytics\Selection\DashboardAnalyticsSiteSelectionUser.cs" />
-    <Compile Include="Models\Analytics\Selection\DashboardAnalyticsSiteSelectionWebProperty.cs" />
     <Compile Include="Models\Json\DashboardJsonObject.cs" />
     <Compile Include="Models\Properties\DashboardErrorProperty.cs" />
-    <Compile Include="PropertyEditors\DashboardPropertyValueConverter.cs" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Lang\en-US.xml" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Lang\en-GB.xml" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Lang\da-DK.xml" />
-    <Content Include="App_Plugins\Skybrud.Dashboard\Scripts\Controllers\AnalyticsProfileDialog.js" />
-    <Compile Include="Config\Analytics\AnalyticsUserConfiguration.cs" />
-    <Compile Include="Config\Analytics\AnalyticsClientConfiguration.cs" />
-    <Compile Include="Config\Analytics\AnalyticsConfiguration.cs" />
-    <Compile Include="Config\Analytics\AnalyticsObject.cs" />
     <Compile Include="Config\DashboardConfiguration.cs" />
-    <Compile Include="Controllers\AnalyticsController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="DashboardConstants.cs" />
     <Compile Include="DashboardContext.cs" />
@@ -231,29 +215,13 @@
     <Compile Include="Exceptions\DashboardException.cs" />
     <Compile Include="Extensions\DashboardTabListExtensions.cs" />
     <Compile Include="Indexing\DashboardExamineIndexer.cs" />
-    <Compile Include="Interfaces\IAnalyticsSite.cs" />
     <Compile Include="Interfaces\IDashboardBlock.cs" />
     <Compile Include="Interfaces\IDashboardPage.cs" />
     <Compile Include="Interfaces\IDashboardPlugin.cs" />
     <Compile Include="Interfaces\IDashboardSite.cs" />
-    <Compile Include="Models\Analytics\Blocks\AnalyticsBlock.cs" />
-    <Compile Include="Models\Analytics\Blocks\AnalyticsChildBlock.cs" />
-    <Compile Include="Models\Analytics\Cached\AnalyticsCachedAccount.cs" />
-    <Compile Include="Models\Analytics\Cached\AnalyticsCachedProfile.cs" />
-    <Compile Include="Models\Analytics\Cached\AnalyticsCachedUser.cs" />
-    <Compile Include="Models\Analytics\Cached\AnalyticsCachedWebProperty.cs" />
     <Compile Include="Models\Blocks\StatusBox\StatusBoxItem.cs" />
     <Compile Include="Models\LastEdited\LastEditedItem.cs" />
     <Compile Include="Models\Properties\DashboardSitesProperty.cs" />
-    <Compile Include="Models\Analytics\Blocks\DevicesBlock.cs" />
-    <Compile Include="Models\Analytics\Blocks\LineChartBlock.cs" />
-    <Compile Include="Models\Analytics\Blocks\PopularBlock.cs" />
-    <Compile Include="Models\Analytics\Blocks\VisitsBlock.cs" />
-    <Compile Include="Models\Analytics\Settings\DashboardAnalyticsSettings.cs" />
-    <Compile Include="Models\Analytics\DataQuery.cs" />
-    <Compile Include="Models\Analytics\DataQueryType.cs" />
-    <Compile Include="Models\Analytics\DataResponse.cs" />
-    <Compile Include="Models\Analytics\DataRow.cs" />
     <Compile Include="Models\Blocks\DashboardBlock.cs" />
     <Compile Include="Models\Blocks\DashboardColumnsBlock.cs" />
     <Compile Include="Models\DashboardPage.cs" />
@@ -268,8 +236,6 @@
     <Compile Include="Properties\AssemblyInfoGenerated.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Plugins\Skybrud.Dashboard\Scripts\Controllers\Analytics.js" />
-    <Content Include="App_Plugins\Skybrud.Dashboard\Scripts\Controllers\AnalyticsProfileEditor.js" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Scripts\Controllers\LastEdited.js" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Scripts\Controllers\PageStatistics.js" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Scripts\Controllers\Columns.js" />
@@ -280,17 +246,11 @@
     <Content Include="App_Plugins\Skybrud.Dashboard\Scripts\Directives\Loader.js" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Scripts\Directives\Pie.js" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Scripts\Plugins\Chart.js" />
-    <Content Include="App_Plugins\Skybrud.Dashboard\Views\Blocks\Analytics.html" />
-    <Content Include="App_Plugins\Skybrud.Dashboard\Views\Blocks\AnalyticsDevices.html" />
-    <Content Include="App_Plugins\Skybrud.Dashboard\Views\Blocks\AnalyticsLineChart.html" />
-    <Content Include="App_Plugins\Skybrud.Dashboard\Views\Blocks\AnalyticsPopular.html" />
-    <Content Include="App_Plugins\Skybrud.Dashboard\Views\Blocks\AnalyticsVisits.html" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Views\Blocks\Chart.html" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Views\Blocks\Columns.html" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Views\Blocks\Dummy.html" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Views\Blocks\Error.html" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Views\Blocks\LastEdited.html" />
-    <Content Include="App_Plugins\Skybrud.Dashboard\Views\Dialogs\AnalyticsProfileDialog.html" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Views\Properties\DashboardSites.html" />
     <Content Include="App_Plugins\Skybrud.Dashboard\package.manifest" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Styles\Default.css">
@@ -302,7 +262,6 @@
     <Content Include="App_Plugins\Skybrud.Dashboard\Styles\_loader.less" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Styles\Default.less" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Views\Properties\Error.html" />
-    <Content Include="App_Plugins\Skybrud.Dashboard\Views\PropertyEditors\AnalyticsProfile.html" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Views\PropertyEditors\DashboardPageStatistics.html" />
     <Content Include="App_Plugins\Skybrud.Dashboard\Views\PropertyEditors\DashboardSiteStatistics.html" />
     <None Include="app.config" />
@@ -313,7 +272,9 @@
   <ItemGroup>
     <Content Include="App_Plugins\Skybrud.Dashboard\Images\sprite.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Plugins\Skybrud.Dashboard\Views\Dialogs\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>"$(SolutionDir)../.skybrud/UpdateAssemblyInfoJson.exe" "$(ProjectPath)" "$(TargetPath)"</PostBuildEvent>

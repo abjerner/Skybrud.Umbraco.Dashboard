@@ -6,7 +6,6 @@ using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
 using Newtonsoft.Json.Linq;
-using Skybrud.Social.Google.Analytics.Interfaces;
 using Skybrud.Umbraco.Dashboard.Config;
 using Skybrud.Umbraco.Dashboard.Interfaces;
 using Skybrud.Umbraco.Dashboard.Plugins;
@@ -155,14 +154,6 @@ namespace Skybrud.Umbraco.Dashboard {
             return DashboardHelpers.Translate(Culture, key, args);
         }
 
-        /// <summary>
-        /// Translates the phrase matching the name of the specified <code>field</code>.
-        /// </summary>
-        /// <param name="field">The field.</param>
-        public string Translate(IAnalyticsField field) {
-            return DashboardHelpers.Translate(Culture, field);
-        }
-
         #endregion
 
         /// <summary>
@@ -258,15 +249,6 @@ namespace Skybrud.Umbraco.Dashboard {
             } else {
                 Directory.CreateDirectory(dashboardTempPath);
                 result.Add("Global cache directory successfully created");
-            }
-
-            // Make sure we have a temporary directive specific to Analytics
-            string analyticsTempPath = MapPath(DashboardConstants.AnalyticsCachePath);
-            if (Directory.Exists(analyticsTempPath)) {
-                result.Add("Analytics cache directory already exists");
-            } else {
-                Directory.CreateDirectory(analyticsTempPath);
-                result.Add("Analytics cache directory successfully created");
             }
 
             return result;
